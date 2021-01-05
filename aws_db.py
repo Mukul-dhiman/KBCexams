@@ -8,3 +8,8 @@ conn = pymysql.connect(
     db = rds.databasename,
 )
 
+def test_show():
+    cur=conn.cursor()
+    cur.execute("select * from vehicle")
+    details = cur.fetchall()
+    return details
