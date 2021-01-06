@@ -9,3 +9,5 @@ conn = pymysql.connect(
 )
 
 
+def signup(email,password):
+    print(email,password)

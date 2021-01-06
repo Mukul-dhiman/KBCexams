@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+
+
+{%  block head %}
+
+
+<script
+    type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<!-- Custom Theme files -->
+<link href="{{ url_for('static', filename='css/pre_pages.css') }}" rel="stylesheet" type="text/css" media="all" />
+<!-- //Custom Theme files -->
+
+<!-- web font -->
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+<!-- //web font -->
+
+<!-- css for start up pages -->
+{% block pre_css %}
+{% endblock %}
+<!-- //css for start up pages -->
+
+{% endblock %}
+
+
+{%  block body %}
+
+<!-- main -->
+<div class="main-w3layouts wrapper">
+    {% block form_div %}
+    {% endblock %}
+    
+
+    <!-- copyright -->
+    <div class="colorlibcopy-agile">
+        <p>© Copyright Rushil Singhal
+            By continuing to use this website, you agree to the <a href="https://github.com/Mukul-dhiman/KBCexams"
+                target="_blank">Terms & Conditions</a></p>
+    </div>
+    <!-- //copyright -->
+    <ul class="colorlib-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<!-- //main -->
+
+
+{% endblock %}
