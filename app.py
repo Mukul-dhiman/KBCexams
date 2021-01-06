@@ -6,8 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    data = api.test_show()
-    return render_template("home.html",data=data)
+    return render_template("home.html")
 
 
 # for local 
