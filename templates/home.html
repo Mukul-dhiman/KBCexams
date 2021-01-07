@@ -14,7 +14,17 @@
 <h1>
     welcom to KBCexams
 </h1>
+{% if session['UserData'] %}
+{{ session['UserData'] }}
 
-{{ user_data }}
+<br>
+
+<a href="/logout">logout</a>
+{% else %}
+
+<a href="/login">login</a>
+
+{% endif %}
+
 
 {% endblock %}
