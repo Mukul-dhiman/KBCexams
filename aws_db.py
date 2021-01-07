@@ -26,3 +26,24 @@ def signup(email,password):
     except Exception as e:
 
         print("error in sign up for email",email,"error: ",e)
+
+def login(email,password):
+    try:
+        with conn.cursor() as cur:
+            sql = "select UserId, Name, PasswordHash, WalletBalance, CreateDate from UserMaster where EmailAddress=%s"
+            cur.execute(sql,(email))
+            data = cur.fetchall()
+            if(password == data[0][2]):
+                return {'correct': "correct","UserID": data[0][0], "Name": data[0][1], "WalletBallance": data[0][3], "CreatedDate": data[0][4]}
+            else:
+                return {'correct': "wrong"}
+
+
+    except Exception as e:
+
+        print("error in loging-in for email",email,"error: ",e)
+        return {'correct': "wrong"}
+
+
+
+
