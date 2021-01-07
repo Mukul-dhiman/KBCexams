@@ -4,7 +4,7 @@ import aws_db as api
 app = Flask(__name__)
 
 # secret key for session
-app.secret_key = api.id_generator(50)
+app.secret_key = "basvbavaiyvbhcbbbcSBCbdibfbbcidbscbk"
 
 
 @app.route('/')
