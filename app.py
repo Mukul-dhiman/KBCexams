@@ -12,7 +12,11 @@ def start_up():
 def signup():
     if(request.method == 'POST'):
         form_details = request.form
+        if(form_details['password']!=form_details['password2']):
+            return render_template("pre_pages/signup.html",error="active")
+
         api.signup(form_details['email'],form_details['password'])
+        
         return render_template("pre_pages/login.html")
     return render_template("pre_pages/signup.html")
 
