@@ -93,7 +93,7 @@ def forget_password():
 def reset_password(token):
 
     try:
-        email = TimeSecureMailToken.loads(token, salt='email-confirm', max_age=3600)
+        email = TimeSecureMailToken.loads(token, salt='email-confirm', max_age=600)
 
         return render_template('pre_pages/reset_password.html', email=email, token=token)
 
@@ -119,7 +119,7 @@ def reset_password_confirm_api():
 def reset_password_error(token):
 
     try:
-        email = TimeSecureMailToken.loads(token, salt='email-confirm', max_age=3600)
+        email = TimeSecureMailToken.loads(token, salt='email-confirm', max_age=600)
 
         return render_template('pre_pages/reset_password.html', email=email, token=token,error="on")
 
