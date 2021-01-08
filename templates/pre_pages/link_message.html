@@ -10,16 +10,16 @@
 {% block form_div %}
 <div class="main-agileinfo">
     <div class="agileits-top">
-        {% if error %}
+        {% if exist %}
+        <p> This Email have no account in KBCexams</p>
+        <br>
+        <p>Please <a href="/signup"> Create Account</a></p>
+        {% else %}
         <p> Link will be send to your Email</p>
         <p> It will be expire in 10 minutes</p>
         <p> it can be in your spam folder</p>
         <br>
         <p>you can log back in <a href="/login"> LOGIN!</a></p>
-        {% else %}
-        <p> This Email have no account in KBCexams</p>
-        <br>
-        <p>Please <a href="/signup"> Create Account</a></p>
         {% endif %}
     </div>
 </div>

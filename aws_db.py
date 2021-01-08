@@ -53,7 +53,6 @@ def UserExist(email):
             cur.execute(sql,(email))
             exist = cur.fetchall()
 
-            print(exist[0][0])
             return exist[0][0]
 
 

@@ -72,18 +72,19 @@ def forget_password():
 
         exist = api.UserExist(email)
 
-        if exist:
+        if (exist==1):
             token = TimeSecureMailToken.dumps(email, salt='email-confirm')
             link = url_for('reset_password', token=token, _external=True)
             msg = 'This link will be desable in 10 Minutes. \nReset Password Link:' + str(link)
             mail.send(email,msg)
 
+            return render_template('pre_pages/link_message.html')
+
         else:
             link = url_for('signup', _external=True)
             msg = 'You do not have an account please sign-up ' + str(link)
             mail.send(email,msg)
-
-        return render_template('pre_pages/link_message.html',exist=exist)
+            return render_template('pre_pages/link_message.html',exist="on")
 
     return render_template('pre_pages/forget_password.html')
 
