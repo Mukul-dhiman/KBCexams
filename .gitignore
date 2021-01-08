@@ -1,6 +1,8 @@
 # cridentials
 aws_credentials.py
 
+# cridentials for mail
+config_mail.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

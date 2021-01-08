@@ -33,6 +33,7 @@ def login(email,password):
             sql = "select UserId, Name, PasswordHash, WalletBalance, CreateDate from UserMaster where EmailAddress=%s"
             cur.execute(sql,(email))
             data = cur.fetchall()
+
             if(password == data[0][2]):
                 return {'correct': "correct","UserID": data[0][0], "Name": data[0][1], "WalletBallance": data[0][3], "CreatedDate": data[0][4]}
             else:
@@ -41,9 +42,22 @@ def login(email,password):
 
     except Exception as e:
 
-        print("error in loging-in for email",email,"error: ",e)
+        print("error in loging-in for email",email,"error: ",str(e))
         return {'correct': "wrong"}
 
 
+def UserExist(email):
+    try:
+        with conn.cursor() as cur:
+            sql = "select exists(select * from UserMaster where EmailAddress=%s)"
+            cur.execute(sql,(email))
+            exist = cur.fetchall()
 
+            return exist
+
+
+    except Exception as e:
+
+        print("error in UserExist API for email",email,"error: ",str(e))
+        return 0
 

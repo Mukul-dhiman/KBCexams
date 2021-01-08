@@ -1,0 +1,16 @@
+#ForgotPassword{
+    font-size: 60%;
+    margin-top: 5px;
+    float: right;
+}
+
+#errorAlert{
+    margin-top: 10px;
+    color: rgb(190, 80, 80);
+    font-size: 70%;
+    float: center;
+}
+
+#login_button{
+    margin-top: 5px;
+}
