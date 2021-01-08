@@ -70,9 +70,9 @@ def forget_password():
     if request.method == 'POST':
         email = request.form['email']
 
-        
+        exist = api.UserExist(email)
 
-        if api.UserExist(email):
+        if exist:
             token = TimeSecureMailToken.dumps(email, salt='email-confirm')
             link = url_for('reset_password', token=token, _external=True)
             msg = 'This link will be desable in 10 Minutes. \nReset Password Link:' + str(link)
@@ -80,22 +80,51 @@ def forget_password():
 
         else:
             link = url_for('signup', _external=True)
-            msg.body = 'You do not have an account please sign-up '.format(link)
+            msg = 'You do not have an account please sign-up ' + str(link)
             mail.send(email,msg)
 
-        return render_template('pre_pages/link_message.html')
+        return render_template('pre_pages/link_message.html',exist=exist)
 
     return render_template('pre_pages/forget_password.html')
 
 
 @app.route('/reset_password/<token>')
 def reset_password(token):
+
     try:
-        email = TimeSecureMailToken.loads(token, salt='email-confirm', max_age=600)
+        email = TimeSecureMailToken.loads(token, salt='email-confirm', max_age=3600)
+
+        return render_template('pre_pages/reset_password.html', email=email, token=token)
 
     except SignatureExpired:
-        return '<h1>The token is expired!</h1>'
-    return '<h1>The token works!</h1>'
+        return render_template('pre_pages/reset_link_expire.html')
+
+@app.route("/reset_password_confirm_api",methods=['GET','POST'])
+def reset_password_confirm_api():
+    
+    if request.method == 'POST':
+        form_details = request.form
+        
+        if(form_details['password']!=form_details['password2']):
+            return redirect("/reset_password/error/"+str(form_details['token']))
+
+        api.change_password(form_details['email'],form_details['password'])
+
+        return redirect("/login")
+
+    return redirect("/reset_password/"+str(form_details['token']))
+
+@app.route('/reset_password/error/<token>')
+def reset_password_error(token):
+
+    try:
+        email = TimeSecureMailToken.loads(token, salt='email-confirm', max_age=3600)
+
+        return render_template('pre_pages/reset_password.html', email=email, token=token,error="on")
+
+    except SignatureExpired:
+        return render_template('pre_pages/reset_link_expire.html')
+
 
 # for local 
 if __name__=='__main__':

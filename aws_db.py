@@ -53,11 +53,26 @@ def UserExist(email):
             cur.execute(sql,(email))
             exist = cur.fetchall()
 
-            return exist
+            print(exist[0][0])
+            return exist[0][0]
 
 
     except Exception as e:
 
         print("error in UserExist API for email",email,"error: ",str(e))
+        return 0
+
+
+def change_password(email,password):
+    try:
+        with conn.cursor() as cur:
+            sql = "update UserMaster set PasswordHash = %s where EmailAddress=%s"
+            cur.execute(sql,(password, email))
+            conn.commit()
+
+
+    except Exception as e:
+
+        print("error in change_password API for email",email,"error: ",str(e))
         return 0
 
