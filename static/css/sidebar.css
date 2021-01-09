@@ -252,8 +252,13 @@
     background: #fff;
     transform: translateX(-100%)
   }
+
+  .sidebar-overlay{
+      min-height: 100vh;
+  }
   
   .sidebar.active .sidebar-content {
+      min-height: 100vh;
     transform: translateX(0)
   }
   

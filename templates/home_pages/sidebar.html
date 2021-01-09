@@ -3,6 +3,7 @@
 {% block static_sidebar %}
 
 <link href="{{ url_for('static', filename='css/sidebar.css') }}" rel="stylesheet" type="text/css" media="all" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script rel="javascript" type="text/javascript" src="{{ url_for('static',filename='js/sidebar.js') }}"></script>
 
 
@@ -26,7 +27,7 @@
 			</form>
 			</div>
 		</div>
-		<div class="sidebar">
+		<div id="sidebar" class="sidebar ">
 			<div class="sidebar-overlay"></div>
 			<div class="sidebar-content">
 				<div class="top-head">
