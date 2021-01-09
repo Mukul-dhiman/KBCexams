@@ -56,7 +56,7 @@ def login():
 
 @app.route('/home')
 def home():
-    return render_template("home_pages/home.html")
+    return render_template("home_pages/sidebar.html")
 
 
 @app.route('/logout')
