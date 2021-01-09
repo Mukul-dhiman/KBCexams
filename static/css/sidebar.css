@@ -3,6 +3,11 @@
   height: 35px;
 }
 
+.content{
+  max-height: 750px;
+  overflow-y: scroll;
+}
+
 #main-logo{
   margin-left: 30px;
 }
@@ -244,17 +249,11 @@
     color: white;
   }
 
-  @media (max-width: 200px){
-    .logo{
-      
-      width:120px;
-    }
-
-  }
+  
   
   @media (max-width: 350px){
     .logo{
-      width:150px;
+      width: 110px;
     }
   }
 

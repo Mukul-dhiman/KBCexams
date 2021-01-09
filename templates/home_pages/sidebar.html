@@ -19,7 +19,7 @@
 	<div class="mobile clearfix">
 		<div class="header">
 			<span class="ion-ios-navicon pull-left"><i></i></span>
-            <object type="image/svg+xml" data="{{ url_for('static', filename='images/logo/default-monochrome.svg') }}" class="logo">
+            <object style="position: inline;" type="image/svg+xml" data="{{ url_for('static', filename='images/logo/default-monochrome.svg') }}" class="logo">
                 <!-- Your fall back here -->
                 <img src="{{ url_for('static', filename='images/logo/default-monochrome.svg') }}" />
             </object>
@@ -55,6 +55,8 @@
 			</div>
 		</div>
 		<div class="content">
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 			{{ session['UserData'] }}
 		</div>
 	</div>
