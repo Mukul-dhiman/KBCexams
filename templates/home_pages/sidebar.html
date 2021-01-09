@@ -39,8 +39,12 @@
 					<a href="#compose"><span class="ion-ios-compose-outline"></span> My Profile</a>
 					<a href="#chats"><span class="ion-ios-chatboxes-outline"></span> Wallet</a>
 					<a href="#profile"><span class="ion-ios-person-outline"></span> Contact Us</a>
-					<a href="/logout"><span class="ion-ios-gear-outline"></span> Logout</a>
-				</div>
+                    {% if session['UserData'] %}
+                    <a href="/logout"><span class="ion-ios-gear-outline"></span> Logout</a>
+                    {% else %}
+                    <a href="/login"><span class="ion-ios-gear-outline"></span> Login</a>
+                    {% endif %}
+                </div>
 			</div>
 		</div>
 		<div class="content">
