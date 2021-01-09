@@ -1,0 +1,29 @@
+{% extends 'main_template.html' %}
+
+{% block static_footer %}
+
+<!-- Custom Theme files -->
+<link href="{{ url_for('static', filename='css/footer.css') }}" rel="stylesheet" type="text/css" media="all" />
+<!-- //Custom Theme files -->
+
+
+<!-- sidebar static files -->
+{% block static_sidebar %}
+{% endblock %}
+<!-- sidebar static files end -->
+{% endblock %}
+
+{%  block footer %}
+
+<!-- sidebar html -->
+{% block sidebar %}
+{% endblock %}
+<!-- sidebar html ends -->
+
+<hr>
+<footer>
+    <p>© Copyright Rushil Singhal
+        By continuing to use this website, you agree to the <a href="https://github.com/Mukul-dhiman/KBCexams"
+            target="_blank">Terms & Conditions</a></p>
+</footer>
+{% endblock %}
