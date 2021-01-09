@@ -19,7 +19,11 @@
 	<div class="mobile clearfix">
 		<div class="header">
 			<span class="ion-ios-navicon pull-left"><i></i></span>
-			<span class="title">KBCexams</span>
+            <object type="image/svg+xml" data="{{ url_for('static', filename='images/logo/default-monochrome.svg') }}" class="logo">
+                <!-- Your fall back here -->
+                <img src="{{ url_for('static', filename='images/logo/default-monochrome.svg') }}" />
+            </object>
+            
 			<span class="ion-ios-search pull-right"></span>
 			<div class="search">
 			<form method="post">
@@ -30,25 +34,28 @@
 		<div id="sidebar" class="sidebar ">
 			<div class="sidebar-overlay"></div>
 			<div class="sidebar-content">
-				<div class="top-head">
-					<div class="logo">KBCexams</div>
+				<div class="top-head sidebar-text">
+					<object   type="image/svg+xml" data="{{ url_for('static', filename='images/logo/default-monochrome.svg') }}" class="logo">
+                        <!-- Your fall back here -->
+                        <img  src="{{ url_for('static', filename='images/logo/default-monochrome.svg') }}" />
+                    </object>   
 				</div>
 				<div class="nav-left">
-					<a href="#home"><span class="ion-ios-home-outline"></span> Live Contests</a>
-					<a href="#alarm"><span class="ion-ios-list-outline"></span> My Activity</a>
-					<a href="#compose"><span class="ion-ios-compose-outline"></span> My Profile</a>
-					<a href="#chats"><span class="ion-ios-chatboxes-outline"></span> Wallet</a>
-					<a href="#profile"><span class="ion-ios-person-outline"></span> Contact Us</a>
+					<a href="#home" class="sidebar-text sidebar-link">Live Contests</a>
+					<a href="#alarm" class="sidebar-text sidebar-link">My Activity</a>
+					<a href="#compose" class="sidebar-text sidebar-link">My Profile</a>
+					<a href="#chats" class="sidebar-text sidebar-link">Wallet</a>
+					<a href="#profile" class="sidebar-text sidebar-link">Contact Us</a>
                     {% if session['UserData'] %}
-                    <a href="/logout"><span class="ion-ios-gear-outline"></span> Logout</a>
+                    <a href="/logout" class="sidebar-text sidebar-link">Logout</a>
                     {% else %}
-                    <a href="/login"><span class="ion-ios-gear-outline"></span> Login</a>
+                    <a href="/login" class="sidebar-text sidebar-link">Login</a>
                     {% endif %}
                 </div>
 			</div>
 		</div>
 		<div class="content">
-			
+			{{ session['UserData'] }}
 		</div>
 	</div>
 </div>
