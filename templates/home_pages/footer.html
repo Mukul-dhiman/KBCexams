@@ -2,28 +2,42 @@
 
 {% block static_footer %}
 
-<!-- Custom Theme files -->
+
 <link href="{{ url_for('static', filename='css/footer.css') }}" rel="stylesheet" type="text/css" media="all" />
-<!-- //Custom Theme files -->
 
 
 <!-- sidebar static files -->
 {% block static_sidebar %}
 {% endblock %}
-<!-- sidebar static files end -->
+
 {% endblock %}
 
-{%  block footer %}
+{% block footer %}
 
 <!-- sidebar html -->
 {% block sidebar %}
 {% endblock %}
 <!-- sidebar html ends -->
 
-<hr>
-<footer>
-    <p>© Copyright Rushil Singhal
-        By continuing to use this website, you agree to the <a href="https://github.com/Mukul-dhiman/KBCexams"
-            target="_blank">Terms & Conditions</a></p>
+<!-- Site footer -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <p class="copyright-text">© Copyright Rushil Singhal
+                    By continuing to use this website, you agree to the <a href="https://github.com/Mukul-dhiman/KBCexams"
+                        target="_blank">Terms & Conditions</a></p>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <ul class="social-icons">
+                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                    <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </footer>
 {% endblock %}
