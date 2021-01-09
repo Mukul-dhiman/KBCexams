@@ -61,7 +61,8 @@ def home():
 
 @app.route('/logout')
 def logout():
-    session.pop('UserData')
+    if 'UserData' in session:
+        session.pop('UserData')
     return redirect("/home")
 
 @app.route('/forget_password', methods=['GET', 'POST'])
