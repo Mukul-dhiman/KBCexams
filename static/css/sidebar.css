@@ -3,10 +3,7 @@
   height: 35px;
 }
 
-.content{
-  max-height: 750px;
-  overflow-y: scroll;
-}
+
 
 #main-logo{
   margin-left: 30px;

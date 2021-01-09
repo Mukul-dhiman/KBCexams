@@ -41,11 +41,11 @@
                     </object>   
 				</div>
 				<div class="nav-left">
-					<a href="#home" class="sidebar-text sidebar-link">Live Contests</a>
-					<a href="#alarm" class="sidebar-text sidebar-link">My Activity</a>
-					<a href="#compose" class="sidebar-text sidebar-link">My Profile</a>
-					<a href="#chats" class="sidebar-text sidebar-link">Wallet</a>
-					<a href="#profile" class="sidebar-text sidebar-link">Contact Us</a>
+					<a href="/" class="sidebar-text sidebar-link">Live Contests</a>
+					<a href="/MyActivity" class="sidebar-text sidebar-link">My Activity</a>
+					<a href="/MyProfile" class="sidebar-text sidebar-link">My Profile</a>
+					<a href="/Wallet" class="sidebar-text sidebar-link">Wallet</a>
+					<a href="/ContactUs" class="sidebar-text sidebar-link">Contact Us</a>
                     {% if session['UserData'] %}
                     <a href="/logout" class="sidebar-text sidebar-link">Logout</a>
                     {% else %}
@@ -55,9 +55,8 @@
 			</div>
 		</div>
 		<div class="content">
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-			{{ session['UserData'] }}
+            {% block main_content %}
+            {% endblock %}
 		</div>
 	</div>
 </div>

@@ -15,10 +15,10 @@ TimeSecureMailToken = URLSafeTimedSerializer(app.secret_key)
 
 
 
-@app.route('/')
+@app.route('/startup')
 def start_up():
     if 'UserData' in session:
-        return redirect("/home")
+        return redirect("/")
     return render_template("pre_pages/start_up.html")
 
 @app.route('/signup', methods=['POST','GET'])
@@ -32,7 +32,7 @@ def signup():
 
         return redirect("/login")
     if 'UserData' in session:
-        return redirect("/home")
+        return redirect("/")
     return render_template("pre_pages/signup.html")
 
 @app.route('/login',methods=['POST','GET'])
@@ -47,23 +47,40 @@ def login():
 
             session['UserData'] = result_dict
             
-            return redirect("/home")
+            return redirect("/")
         else:
             return render_template("pre_pages/login.html", wrong_credentials="wrong")
     if 'UserData' in session:
-        return redirect("/home")
+        return redirect("/")
     return render_template("pre_pages/login.html")
 
-@app.route('/home')
+@app.route('/')
 def home():
-    return render_template("home_pages/sidebar.html")
+    if 'UserData' in session:
+        return render_template("home_pages/main-content/LiveContests.html")
+    return redirect("/startup")
 
+@app.route('/ContactUs')
+def ContactUs():
+    return render_template("home_pages/main-content/ContactUs.html")
+
+@app.route('/MyActivity')
+def MyActivity():
+    return render_template("home_pages/main-content/MyActivity.html")
+
+@app.route('/MyProfile')
+def MyProfile():
+    return render_template("home_pages/main-content/MyProfile.html")
+
+@app.route('/Wallet')
+def Wallet():
+    return render_template("home_pages/main-content/Wallet.html")
 
 @app.route('/logout')
 def logout():
     if 'UserData' in session:
         session.pop('UserData')
-    return redirect("/home")
+    return redirect("/")
 
 @app.route('/forget_password', methods=['GET', 'POST'])
 def forget_password():
