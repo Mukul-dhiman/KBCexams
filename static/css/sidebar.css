@@ -252,7 +252,7 @@
 
   }
   
-  @media (max-width: 250px){
+  @media (max-width: 350px){
     .logo{
       width:150px;
     }
