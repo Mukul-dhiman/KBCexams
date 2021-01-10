@@ -9,7 +9,7 @@ conn = pymysql.connect(
 )
 
 def reconnect():
-    print("reconnecting...")
+    # print("reconnecting...")
     try:
         conn = pymysql.connect(
             host = rds.host,
