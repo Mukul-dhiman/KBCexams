@@ -57,7 +57,8 @@ def login():
 @app.route('/')
 def home():
     if 'UserData' in session:
-        return render_template("home_pages/main-content/LiveContests.html")
+        contestList = api.contestList()
+        return render_template("home_pages/main-content/LiveContests.html", contestList = contestList)
     return redirect("/startup")
 
 @app.route('/ContactUs')

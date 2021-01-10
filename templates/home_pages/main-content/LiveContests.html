@@ -3,17 +3,60 @@
 
 {% block static_content %}
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link href="{{ url_for('static', filename='css/main_page_css/LiveContestList.css') }}" rel="stylesheet" type="text/css" media="all" />
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 {% endblock %}
 
 
 {% block main_content %}
-            
+
 <div class="LiveContestList">
     <b id="LiveContestListHead">Live Contests</b>
 
-    
+
+    <br>
+    {% if contestList %}
+
+
+
+    {% for contest in contestList %}
+
+    <div class="contest-card">
+        <br>
+        {{ contest }}
+        {% set progression = (100*(contest[3]-contest[6])/contest[3]) %}
+        {% set progression = (progression - (progression%1))|int %}
+        
+        <br><br>
+        <div class="progress">
+            <div id="progress-bar-{{contest[0]}}" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40"
+                aria-valuemin="0" aria-valuemax="100" >
+                {{ progression }}%
+            </div>
+            <script type="text/javascript"> $("#progress-bar-{{contest[0]}}").css("width","{{progression}}%"); </script>
+            
+        </div>
+        <hr>
+        <div class="card-footer">
+            <div class="statement-card">$50.00 | 80% Unlimited Entries</div>
+            <span></span>
+            <div class="time-left-card">time left</div>
+        </div>
+        <br><br>
+    </div>
+    <br><br>
+
+
+    {% endfor %}
+
+
+    {% else %}
+    <br>
+    No Contest
+    <br>
+    {% endif %}
+
 
 </div>
 {% endblock %}

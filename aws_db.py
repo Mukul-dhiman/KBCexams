@@ -9,7 +9,7 @@ conn = pymysql.connect(
 )
 
 def reconnect():
-    # print("reconnecting...")
+    print("reconnecting...")
     try:
         conn = pymysql.connect(
             host = rds.host,
@@ -38,7 +38,6 @@ def signup(email,password):
             conn.commit()
 
     except Exception as e:
-
         print("error in sign up for email",email,"error: ",e)
 
 def login(email,password):
@@ -56,7 +55,6 @@ def login(email,password):
 
 
     except Exception as e:
-
         print("error in loging-in for email",email,"error: ",str(e))
         return {'correct': "wrong"}
 
@@ -73,7 +71,6 @@ def UserExist(email):
 
 
     except Exception as e:
-
         print("error in UserExist API for email",email,"error: ",str(e))
         return 0
 
@@ -88,7 +85,19 @@ def change_password(email,password):
 
 
     except Exception as e:
-
         print("error in change_password API for email",email,"error: ",str(e))
         return 0
 
+
+def contestList():
+    reconnect()
+    try:
+        with conn.cursor() as cur:
+            sql = "select * from ContestMaster where date(CompletionDate) > date(now());"
+            cur.execute(sql)
+            data = cur.fetchall()
+            return data
+
+    except Exception as e:
+        print("error in Listing Contest error: ",e)
+        return
