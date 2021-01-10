@@ -26,7 +26,14 @@
 
     <div class="contest-card">
         <br>
-        {{ contest }}
+        <div class="card_top">
+            <div class="entry-prize">
+               <b> ₹ 1 Lakh </b>
+            </div>
+            <div class="entry-button">
+                <button class=" btn btn-success">₹{{contest[2]}}</button>
+            </div>
+        </div>
         {% set progression = (100*(contest[3]-contest[6])/contest[3]) %}
         {% set progression = (progression - (progression%1))|int %}
 
