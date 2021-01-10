@@ -184,6 +184,7 @@
   
   .sidebar .sidebar-content {
     width: 20%;
+    min-height: 100vh;
     color: #333;
     padding: 15px;
     z-index: 9999;
