@@ -66,15 +66,23 @@ def ContactUs():
 
 @app.route('/MyActivity')
 def MyActivity():
-    return render_template("home_pages/main-content/MyActivity.html")
+    if 'UserData' in session:
+        return render_template("home_pages/main-content/MyActivity.html")
+    return redirect("/startup")
+    
 
 @app.route('/MyProfile')
 def MyProfile():
-    return render_template("home_pages/main-content/MyProfile.html")
+    if 'UserData' in session:
+        return render_template("home_pages/main-content/MyProfile.html")
+    return redirect("/startup")
 
 @app.route('/Wallet')
 def Wallet():
-    return render_template("home_pages/main-content/Wallet.html")
+    if 'UserData' in session:
+        return render_template("home_pages/main-content/Wallet.html")
+    return redirect("/startup")
+    
 
 @app.route('/logout')
 def logout():
