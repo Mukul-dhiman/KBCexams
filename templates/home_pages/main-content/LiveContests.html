@@ -7,6 +7,7 @@
 <link href="{{ url_for('static', filename='css/main_page_css/LiveContestList.css') }}" rel="stylesheet" type="text/css"
     media="all" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script rel="javascript" type="text/javascript" src="{{ url_for('static',filename='js/contest_time_left.js') }}"></script>
 {% endblock %}
 
 
@@ -46,7 +47,13 @@
             <br>
             <hr>
             <div class="statement-card">$50.00 | 80% Unlimited Entries</div>
-            <div class="time-left-card">time left</div>
+            <div class="time-left-card"><p id="time-left-spot-{{contest[0]}}"></p></div>
+            
+            <script>  
+                var contest_end_time = new Date('{{contest[1]}}');
+                initializeClock('time-left-spot-{{contest[0]}}', contest_end_time);
+            </script>
+                
         </div>
     </div>
     <br><br>
