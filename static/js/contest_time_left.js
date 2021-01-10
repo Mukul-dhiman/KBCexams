@@ -4,7 +4,7 @@ function getTimeRemaining(endtime) {
     var minutes = Math.floor((t / 1000 / 60) % 60);
     var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
     var days = Math.floor(t / (1000 * 60 * 60 * 36));
-    return days + ":" + hours + ":" + minutes + ":" + seconds ;
+    return days + "Days: " + hours + ":" + minutes + ":" + seconds ;
   
   }
   
