@@ -8,6 +8,19 @@ conn = pymysql.connect(
     db = rds.databasename,
 )
 
+def reconnect():
+    print("reconnecting...")
+    try:
+        conn = pymysql.connect(
+            host = rds.host,
+            port = rds.port,
+            user = rds.user,
+            password = rds.password,
+            db = rds.databasename,
+        )
+    except Exception as e:
+        print("error in reconnecting to database, error: ",str(e))
+
 import string
 import random
 
@@ -16,6 +29,7 @@ def id_generator(size, chars=string.ascii_uppercase + string.digits):
 
 
 def signup(email,password):
+    reconnect()
     try:
         UserID = id_generator(64)
         with conn.cursor() as cur:
@@ -28,6 +42,7 @@ def signup(email,password):
         print("error in sign up for email",email,"error: ",e)
 
 def login(email,password):
+    reconnect()
     try:
         with conn.cursor() as cur:
             sql = "select UserId, Name, PasswordHash, WalletBalance, CreateDate from UserMaster where EmailAddress=%s"
@@ -47,6 +62,7 @@ def login(email,password):
 
 
 def UserExist(email):
+    reconnect()
     try:
         with conn.cursor() as cur:
             sql = "select exists(select * from UserMaster where EmailAddress=%s)"
@@ -63,6 +79,7 @@ def UserExist(email):
 
 
 def change_password(email,password):
+    reconnect()
     try:
         with conn.cursor() as cur:
             sql = "update UserMaster set PasswordHash = %s where EmailAddress=%s"
