@@ -8,6 +8,7 @@
     media="all" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script rel="javascript" type="text/javascript" src="{{ url_for('static',filename='js/contest_time_left.js') }}"></script>
+<script rel="javascript" type="text/javascript" src="{{ url_for('static',filename='js/progression_bar.js') }}"></script>
 {% endblock %}
 
 
@@ -41,11 +42,13 @@
 
         <div class="card-footer">
             <div class="progress">
-                <div id="progress-bar-{{contest[0]}}" class="progress-bar progress-bar active" role="progressbar"
+                <div id="progress-bar-{{contest[0]}}" class="progress-bar progress-bar-animated " role="progressbar"
                     aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
                     {{ progression }}%
                 </div>
-                <script type="text/javascript"> $("#progress-bar-{{contest[0]}}").css("width", "{{progression}}%"); </script>
+                <script>
+                    progressbar('#progress-bar-{{contest[0]}}', '{{progression}}%')
+                </script>
 
             </div>
             <div class="spots-left">{{ contest[6] }} Spots Left</div>
