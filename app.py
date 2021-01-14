@@ -154,6 +154,26 @@ def reset_password_error(token):
         return render_template('pre_pages/reset_link_expire.html')
 
 
+# contest pages
+@app.route('/contest/<contestID>')
+def contest_details(contestID):
+
+    contest_data = api.get_contest_details(contestID)
+
+    if contest_data:
+        return render_template('home_pages/main-content/contest_pages/contest_details.html',contest_data = contest_data)
+
+    else:
+        return "<h1>something wrong</h1>"
+
+
+@app.route('/contest/<contestID>/ticket')
+def ticket(contestID):
+    
+    return "<h1>very good</h1>"
+
+
+
 # for local 
 if __name__=='__main__':
     app.run(debug=True)

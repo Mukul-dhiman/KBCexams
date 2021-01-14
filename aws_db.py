@@ -101,3 +101,18 @@ def contestList():
     except Exception as e:
         print("error in Listing Contest error: ",e)
         return
+
+
+
+def get_contest_details(contestID):
+    reconnect()
+    try:
+        with conn.cursor() as cur:
+            sql = "select * from ContestAwardDetails where ContestID = %s order by StartRank ASC;"
+            cur.execute(sql,contestID)
+            data = cur.fetchall()
+            return data
+
+    except Exception as e:
+        print("error in getting Contest data, error: ",e)
+        return

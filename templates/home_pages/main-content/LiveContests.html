@@ -25,6 +25,7 @@
 
     {% for contest in contestList %}
 
+    <a href="/contest/{{contest[0]}}" style="color: white">
     <div class="contest-card">
         <br>
         <div class="card_top">
@@ -32,7 +33,9 @@
                <b> ₹ 1 Lakh </b>
             </div>
             <div class="entry-button">
-                <button class=" btn btn-success">₹{{contest[2]}}</button>
+                <form method="get" action="/contest/{{contest[0]}}/ticket">
+                    <button class=" btn btn-success">{{contest[2]}}</button>
+                </form>
             </div>
         </div>
         {% set progression = (100*(contest[3]-contest[6])/contest[3]) %}
@@ -56,7 +59,7 @@
             <div class="total-spots">{{ contest[3] }} Spots</div>
             <br>
             <hr>
-            <div class="statement-card">$50.00 | 80% Unlimited Entries</div>
+            <div class="statement-card">₹50.00 | 80% Unlimited Entries</div>
             <div class="time-left-card"><p id="time-left-spot-{{contest[0]}}"></p></div>
             
             <script>  
@@ -67,6 +70,7 @@
         </div>
     </div>
     <br><br>
+    </a>
 
 
     {% endfor %}

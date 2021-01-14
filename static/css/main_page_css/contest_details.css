@@ -1,0 +1,28 @@
+.contest-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+    max-width: 700px;
+    min-height: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+  
+.contest-details:hover {
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+}
+
+.ticket_button{
+    color: white;
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+    background-color: #76b852;
+    height: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.ticket_button:hover{
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+}
