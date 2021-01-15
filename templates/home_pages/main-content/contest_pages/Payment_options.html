@@ -1,0 +1,25 @@
+{% extends 'home_pages/sidebar.html' %}
+
+
+{% block static_content %}
+<link href="{{ url_for('static', filename='css/main_page_css/payment_options.css') }}" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+
+
+{% block main_content %}
+<br>
+<div style="text-align: center;">
+    <p >Contest Pay: <span id="Payment_tag"></span></p>
+</div>
+<script>  
+    get_prize_tag('{{contestID}}','#Payment_tag');
+</script>
+<div class="payment-options">
+    <div class="options">
+        1-> Pay from payment
+        <br>
+        2-> Pay from Wallet <a href=""></a>
+    </div>
+
+</div>
+{% endblock %}

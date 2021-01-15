@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import aws_db as api
 import mailing as mail
 
@@ -169,9 +169,19 @@ def contest_details(contestID):
 
 @app.route('/contest/<contestID>/ticket')
 def ticket(contestID):
-    
-    return "<h1>very good</h1>"
+    if 'UserData' not in session:
+        return redirect("/startup")
+    return render_template('home_pages/main-content/contest_pages/Payment_options.html',contestID = contestID)
 
+
+@app.route('/get_contest_pay/<contestid>',methods=['POST'])
+def get_contest_pay(contestid):
+    data = api.get_contest_pay(contestid)
+    if data == "error":
+        return jsonify({'error' : 'Missing data!'})
+    x = {"value":data[0][0]}
+    return jsonify(x)
+    
 
 
 # for local 

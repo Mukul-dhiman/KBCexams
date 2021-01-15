@@ -116,3 +116,17 @@ def get_contest_details(contestID):
     except Exception as e:
         print("error in getting Contest data, error: ",e)
         return
+
+
+def get_contest_pay(contestID):
+    reconnect()
+    try:
+        with conn.cursor() as cur:
+            sql = "select TicketPrice from ContestMaster where ContestID = %s"
+            cur.execute(sql,contestID)
+            data = cur.fetchall()
+            return data
+
+    except Exception as e:
+        print("error in getting contest entry fees, error:",e)
+        return "error"
