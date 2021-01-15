@@ -144,3 +144,25 @@ def get_Current_Wallet_Balance(userid):
     except Exception as e:
         print("error in getting Wallet Balance, error:",e)
         return "error"
+
+
+def get_ticket(contestID,UserID):
+    reconnect()
+    try:
+        with conn.cursor() as cur:
+
+            sql = "select WalletBalance from UserMaster where UserID = %s"
+            cur.execute(sql,UserID)
+            walletBallence = cur.fetchall()[0][0]
+
+            sql ="select TicketPrice from ContestMaster where ContestID = %s"
+            cur.execute(sql,contestID)
+            TicketPrice = cur.fetchall()[0][0]
+
+            print(walletBallence, TicketPrice)
+
+            return "seccess"
+
+    except Exception as e:
+        print("error in getting ticket, error:",e)
+        return "error"

@@ -192,6 +192,13 @@ def get_Current_Wallet_Balance(userid):
     return jsonify(x)
 
 
+@app.route('/get_ticket/<contestID>/<UserID>',methods=['Post'])
+def get_ticket(contestID,UserID):
+    result = api.get_ticket(contestID,UserID)
+
+    if result == "error":
+        return jsonify({'error' : 'Missing data!'})   
+    return jsonify({'success' : 'all good'})
 
 # for local 
 if __name__=='__main__':
