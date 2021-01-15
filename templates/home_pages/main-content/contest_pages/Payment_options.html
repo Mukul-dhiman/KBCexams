@@ -2,23 +2,43 @@
 
 
 {% block static_content %}
-<link href="{{ url_for('static', filename='css/main_page_css/payment_options.css') }}" rel="stylesheet" type="text/css" media="all" />
+<link href="{{ url_for('static', filename='css/main_page_css/payment_options.css') }}" rel="stylesheet" type="text/css"
+    media="all" />
+<script rel="javascript" type="text/javascript"
+    src="{{ url_for('static',filename='js/ticket_from_wallet.js') }}"></script>
 {% endblock %}
 
 
 {% block main_content %}
+<meta id="required-info-for-ticket" contestID="{{contestID}}" UserID="{{ session['UserData']['UserID'] }}">
 <br>
 <div style="text-align: center;">
-    <p >Contest Pay: <span id="Payment_tag"></span></p>
+    <p>Contest Pay: <span id="Payment_tag"></span></p>
 </div>
-<script>  
-    get_prize_tag('{{contestID}}','#Payment_tag');
+<script>
+    get_prize_tag('{{contestID}}', '#Payment_tag');
 </script>
 <div class="payment-options">
     <div class="options">
-        1-> Pay from payment
+        1-> Pay from payment <button id="">here</button>
         <br>
-        2-> Pay from Wallet <a href=""></a>
+        2-> Pay from Wallet <button type="button" id="Wallet_ticket_button">here</button>
+    </div>
+
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <button class="close" id="model-close">&times;</button>
+        <p>Wallet Balance: <span id="Current_Wallet_Balance"></span> </p>
+        <button type="button" id="confirm_ticket" class="confirm_button">Confirm Ticket <span
+                id="Payment_tag"></span></button>
+        <script>
+            get_Current_Wallet_Balance("{{ session['UserData']['UserID'] }}", '#Current_Wallet_Balance');
+        </script>
     </div>
 
 </div>

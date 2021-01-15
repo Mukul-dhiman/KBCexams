@@ -130,3 +130,17 @@ def get_contest_pay(contestID):
     except Exception as e:
         print("error in getting contest entry fees, error:",e)
         return "error"
+
+
+def get_Current_Wallet_Balance(userid):
+    reconnect()
+    try:
+        with conn.cursor() as cur:
+            sql = "select WalletBalance from UserMaster where UserID = %s"
+            cur.execute(sql,userid)
+            data = cur.fetchall()
+            return data
+
+    except Exception as e:
+        print("error in getting Wallet Balance, error:",e)
+        return "error"

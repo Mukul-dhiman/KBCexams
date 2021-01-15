@@ -183,6 +183,15 @@ def get_contest_pay(contestid):
     return jsonify(x)
     
 
+@app.route('/get_Current_Wallet_Balance/<userid>',methods=['POST'])
+def get_Current_Wallet_Balance(userid):
+    data = api.get_Current_Wallet_Balance(userid)
+    if data == "error":
+        return jsonify({'error' : 'Missing data!'})
+    x = {"value":data[0][0]}
+    return jsonify(x)
+
+
 
 # for local 
 if __name__=='__main__':
