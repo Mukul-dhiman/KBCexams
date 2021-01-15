@@ -24,7 +24,7 @@ $(document).on('click', '#confirm_ticket', function () {
         url: qurl,
         dataType: "json",
         success: function (data) {
-            console.log("done");
+            console.log(data);
         },
         error: function (jqXHR) {
             alert("error: " + jqXHR.status);

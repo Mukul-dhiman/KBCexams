@@ -198,7 +198,7 @@ def get_ticket(contestID,UserID):
 
     if result == "error":
         return jsonify({'error' : 'Missing data!'})   
-    return jsonify({'success' : 'all good'})
+    return jsonify({'success' : result})
 
 # for local 
 if __name__=='__main__':

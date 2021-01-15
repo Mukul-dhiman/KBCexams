@@ -9,7 +9,7 @@ conn = pymysql.connect(
 )
 
 def reconnect():
-    print("reconnecting...")
+    # print("reconnecting...")
     try:
         conn = pymysql.connect(
             host = rds.host,
@@ -27,6 +27,8 @@ import random
 def id_generator(size, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
+def ticket_generator(size, chars=string.ascii_letters + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
 
 def signup(email,password):
     reconnect()
@@ -153,15 +155,28 @@ def get_ticket(contestID,UserID):
 
             sql = "select WalletBalance from UserMaster where UserID = %s"
             cur.execute(sql,UserID)
-            walletBallence = cur.fetchall()[0][0]
+            walletBallance = cur.fetchall()[0][0]
 
             sql ="select TicketPrice from ContestMaster where ContestID = %s"
             cur.execute(sql,contestID)
             TicketPrice = cur.fetchall()[0][0]
 
-            print(walletBallence, TicketPrice)
+            print(walletBallance, TicketPrice)
 
-            return "seccess"
+            if(walletBallance < TicketPrice):
+                return "Money_limit"
+            
+            ticketid = ticket_generator(64)
+
+            sql = "insert into UserContestParticipationDetails (TicketID, UserID, ContestID, TicketState) value(%s,%s,%s,%s)"
+            cur.execute(sql,(ticketid, UserID, contestID, 0))
+            # if TicketState equals 0: means ticket is not used 
+            # if 1: means ticket is used
+            # if 2: means ticket is expired without use
+            # if 3: means ticket is expired and used 
+            conn.commit()
+
+            return "complete"
 
     except Exception as e:
         print("error in getting ticket, error:",e)
