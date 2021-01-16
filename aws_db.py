@@ -182,3 +182,34 @@ def get_ticket(contestID,UserID):
     except Exception as e:
         print("error in getting ticket, error:",e)
         return "error"
+
+
+
+def get_Current_Wallet_Balance(userid):
+    reconnect()
+    try:
+        with conn.cursor() as cur:
+            sql = "select WalletBalance from UserMaster where UserID = %s"
+            cur.execute(sql,userid)
+            data = cur.fetchall()
+            return data
+
+    except Exception as e:
+        print("error in getting Wallet Balance, error:",e)
+        return "error"
+
+def ticket_history(UserID,contestID):
+    reconnect()
+    try:
+        with conn.cursor() as cur:
+            if contestID == "all":
+                sql = "select * from UserContestParticipationDetails where UserID = %s order by CreatedDate desc"
+                cur.execute(sql,UserID)
+                data = cur.fetchall()
+                return data
+
+
+        
+    except Exception as e:
+        print("error in getting ticket history, error:",e)
+        return "error"

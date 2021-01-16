@@ -2,12 +2,28 @@
 
 
 {% block static_content %}
+<link href="{{ url_for('static', filename='css/main_page_css/MyActivity.css') }}" rel="stylesheet" type="text/css"
+    media="all" />
+<script rel="javascript" type="text/javascript" src="{{ url_for('static',filename='js/MyActivity.js') }}"></script>
 
 {% endblock %}
 
 
 {% block main_content %}
+<meta id="session_user_id" UserID="{{ session['UserData']['UserID'] }}">
+<br>
+<div class="MyActivity">
 
-none
+    <br>
+    <div class="all_tickets" id="all_tickets">
 
+    </div>
+    <br>
+    <div class="Account_created">
+
+        <span class="account_created_text">Account Created</span>
+        <span class="account_created_date">{{ session['UserData']['CreatedDate'] }}</span>
+
+    </div>
+</div>
 {% endblock %}
