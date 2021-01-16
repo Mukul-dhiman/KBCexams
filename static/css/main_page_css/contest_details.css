@@ -26,3 +26,44 @@
 .ticket_button:hover{
     box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
 }
+
+
+.MyActivity {
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+    max-width: 700px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.ticket_div{
+    color: black;
+    text-align: center;
+    transition: transform 2s;
+    /* display: none; */
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    height: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.ticket_div:hover{
+    background-color: rgba(inherit,inherit,inherit,1);
+    transform: scale(1.1);
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+}
+
+.ticket_id{
+    float: left;
+}
+
+.ticket_date{
+    float: right;
+}

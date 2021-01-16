@@ -13,6 +13,7 @@
 
 .Account_created{
     text-align: center;
+    transition: transform .2s;
     display: flex;
     bottom: 0;
     flex-direction: column;
@@ -25,11 +26,14 @@
 }
 
 .Account_created:hover{
+    transform: scale(1.1);
     box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
 }
 
 .ticket_div{
+    color: black;
     text-align: center;
+    transition: transform 2s;
     /* display: none; */
     flex-direction: column;
     justify-content: space-between;
@@ -42,6 +46,8 @@
 }
 
 .ticket_div:hover{
+    background-color: rgba(inherit,inherit,inherit,1);
+    transform: scale(1.1);
     box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
 }
 
@@ -52,6 +58,16 @@
 .ticket_date{
     float: right;
 }
+
+.account_created_text{
+    float: left;
+}
+
+
+.account_created_date{
+    float: right;
+}
+
 
 a {
     text-decoration: none;

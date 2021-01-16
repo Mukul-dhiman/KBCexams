@@ -208,6 +208,11 @@ def ticket_history(UserID,contestID):
                 data = cur.fetchall()
                 return data
 
+            else:
+                sql = "select * from UserContestParticipationDetails where UserID = %s and ContestID = %s order by CreatedDate desc"
+                cur.execute(sql,(UserID,contestID))
+                data = cur.fetchall()
+                return data
 
         
     except Exception as e:

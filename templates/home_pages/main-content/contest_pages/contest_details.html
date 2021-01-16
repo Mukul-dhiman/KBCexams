@@ -3,6 +3,8 @@
 
 {% block static_content %}
 <link href="{{ url_for('static', filename='css/main_page_css/contest_details.css') }}" rel="stylesheet" type="text/css" media="all" />
+<script rel="javascript" type="text/javascript" src="{{ url_for('static',filename='js/MyActivity.js') }}"></script>
+
 {% endblock %}
 
 
@@ -43,4 +45,16 @@
     </div>
 
 </div>
+<meta id="session_user_id" UserID="{{ session['UserData']['UserID'] }}" contestID="{{ contest_data[0][0] }}">
+
+<br>
+<div class="MyActivity">
+
+    <br>
+    <div class="all_tickets" id="all_tickets">
+
+    </div>
+</div>
+
+
 {% endblock %}
