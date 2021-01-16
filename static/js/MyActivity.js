@@ -34,12 +34,16 @@ $(window).on('load',function(){
                 data.success[ticket][9]+
                 "' TicketState='"+
                 data.success[ticket][10]+
-                "'> <div class='ticket_div' id='"+
+                "'>"+
+                "<a href='/contest_env/"+
+                data.success[ticket][2]+"/"+data.success[ticket][0]+
+                "'>"+
+                " <div class='ticket_div' id='"+
                 data.success[ticket][0]+"'>" + 
                 "<span class='ticket_id'>" + 
                 data.success[ticket][2] + 
-                "</span>" + "<span class='ticket_date'>" + 
-                data.success[ticket][7] + "</span>" + "<div>");
+                "</span> " + "<span class='ticket_date'>" + 
+                data.success[ticket][7] + "</span>" + "<div></a>");
                 let color = "red";
                 if(data.success[ticket][10]==0){
                     color = "rgba(255,255,0,0.2)";

@@ -1,0 +1,31 @@
+.ticket_info {
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+    max-width: 700px;
+    min-height: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+
+.ticket_info:hover{
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+}
+
+
+.ticket_state_button{
+    color: white;
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+    background-color: #76b852;
+    height: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.ticket_state_button:hover{
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+}

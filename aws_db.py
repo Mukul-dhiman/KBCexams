@@ -218,3 +218,35 @@ def ticket_history(UserID,contestID):
     except Exception as e:
         print("error in getting ticket history, error:",e)
         return "error"
+
+
+
+
+
+def ticket_state(ticketID):
+    reconnect()
+    try:
+        with conn.cursor() as cur:
+            sql = "select TicketState from UserContestParticipationDetails where TicketID = %s"
+            cur.execute(sql,ticketID)
+            data = cur.fetchall()
+            return data
+
+    except Exception as e:
+        print("error in getting ticket State, error:",e)
+        return "error"
+
+
+
+def ticket_info(ticketID):
+    reconnect()
+    try:
+        with conn.cursor() as cur:
+            sql = "select * from UserContestParticipationDetails where TicketID = %s"
+            cur.execute(sql,ticketID)
+            data = cur.fetchone()
+            return data
+
+    except Exception as e:
+        print("error in getting ticket info, error:",e)
+        return "error"

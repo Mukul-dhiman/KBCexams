@@ -211,6 +211,25 @@ def get_ticket_history(UserID,contestID):
     return jsonify({'success' : ticket_history})
 
 
+
+@app.route('/contest_env/<contestID>/<ticketID>')
+def contest_env(contestID,ticketID):
+
+    if 'UserData' not in session:
+        return redirect("/startup")
+
+    ticket_info = api.ticket_info(ticketID)
+
+    print(ticket_info)
+    if session['UserData']['UserID'] != ticket_info[1]:
+        return redirect("/")
+
+    return render_template('home_pages/main-content/contest_pages/contest_env.html',ticket_info=ticket_info)
+
+
+    
+
+
 # for local 
 if __name__=='__main__':
     app.run(debug=True)

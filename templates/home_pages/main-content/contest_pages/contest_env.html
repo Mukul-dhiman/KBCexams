@@ -1,0 +1,30 @@
+{% extends 'home_pages/sidebar.html' %}
+
+
+{% block static_content %}
+<link href="{{ url_for('static', filename='css/main_page_css/contest_env.css') }}" rel="stylesheet" type="text/css"
+    media="all" />
+<script rel="javascript" type="text/javascript" src="{{ url_for('static',filename='js/contest_env.js') }}"></script>
+
+{% endblock %}
+
+
+{% block main_content %}
+<meta id="user_ticket_info" UserID="{{ session['UserData']['UserID'] }}" ticket_info="{{ ticket_info }}">
+<br>
+<div class="ticket_info">
+    {{ ticket_info }}
+    
+
+
+    <button class="ticket_state_button">
+        {% if ticket_info[10] == 0 %}
+            Play Now
+        {% elif ticket_info[10] == 1 %}
+            Ticket Already Used
+        {% else %}
+            Ticket Expire
+        {% endif %}
+    </button>
+</div>
+{% endblock %}
