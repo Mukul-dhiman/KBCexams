@@ -161,15 +161,16 @@ def get_ticket(contestID,UserID):
             cur.execute(sql,contestID)
             TicketPrice = cur.fetchall()[0][0]
 
-            print(walletBallance, TicketPrice)
 
             if(walletBallance < TicketPrice):
                 return "Money_limit"
             
             ticketid = ticket_generator(64)
 
-            sql = "insert into UserContestParticipationDetails (TicketID, UserID, ContestID, TicketState) value(%s,%s,%s,%s)"
-            cur.execute(sql,(ticketid, UserID, contestID, 0))
+            TicketState = 0
+
+            sql = "insert into UserContestParticipationDetails (TicketID, UserID, ContestID, TicketState) value (%s,%s,%s,%s)"
+            cur.execute(sql,(ticketid, UserID, contestID, TicketState))
             # if TicketState equals 0: means ticket is not used 
             # if 1: means ticket is used
             # if 2: means ticket is expired without use

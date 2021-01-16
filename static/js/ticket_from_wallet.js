@@ -24,11 +24,20 @@ $(document).on('click', '#confirm_ticket', function () {
         url: qurl,
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            get_Current_Wallet_Balance(UserID, '#Current_Wallet_Balance');
+            console.log(data.success);
+            if(data.success=="complete"){
+                document.getElementById("ticket_status").style.color="Green";
+                document.getElementById("ticket_status").innerText="You get the Ticket!!!";
+            }
+            else{
+                document.getElementById("ticket_status").style.color="Red";
+                document.getElementById("ticket_status").innerText="Not enough money in Wallet";
+            }
         },
         error: function (jqXHR) {
-            alert("error: " + jqXHR.status);
-            console.log(jqXHR);
+            document.getElementById("ticket_status").style.color="Red";
+            document.getElementById("ticket_status").innerText="Something went Wrong! Try Again";
         }
     });
 });
