@@ -220,7 +220,6 @@ def contest_env(contestID,ticketID):
 
     ticket_info = api.ticket_info(ticketID)
 
-    print(ticket_info)
     if session['UserData']['UserID'] != ticket_info[1]:
         return redirect("/")
 
