@@ -21,22 +21,23 @@
 
         </div>
         <div class="question_options">
-            <div class="option1" id="option1"> 
+            <div class="option1" id="option1">
 
             </div>
-            <div class="option2" id="option2"> 
+            <div class="option2" id="option2">
 
             </div>
-            <div class="option3" id="option3"> 
+            <div class="option3" id="option3">
 
             </div>
-            <div class="option4" id="option4"> 
+            <div class="option4" id="option4">
 
             </div>
         </div>
     </div>
     <div class="navigation-next-previous">
-        <button type="button" id="navigation_button_previous" previous="9" class="navigation_button previous">&laquo; Previous</button>
+        <button type="button" id="navigation_button_previous" previous="9" class="navigation_button previous">&laquo;
+            Previous</button>
         <button type="button" id="navigation_button_next" next="1" class="navigation_button next">Next &raquo;</button>
     </div>
 </div>
@@ -57,9 +58,12 @@
     <div class="panel">
         <h3>Yay! Panels!</h3>
         {% for i in range(10) %}
-        <div class="panel_button">
-            <button type="button" onclick='question_number("{{ i }}")'>Question {{ i + 1 }}</button>
-        </div>
+        <button class="panel_button" type="button" onclick='question_number("{{ i }}")'>
+            <div class="panel_button_div">
+                Question {{ i + 1 }}
+            </div>
+        </button>
+        <br>
         {% endfor %}
     </div>
 </div>

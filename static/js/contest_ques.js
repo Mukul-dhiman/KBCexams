@@ -21,7 +21,7 @@ $(window).on('load',function(){
 
 var myVar;
 
-var timeLimit = 10000;
+var timeLimit = 10*60*1000;
 var time_remain;
 
 function timer() {

@@ -61,7 +61,7 @@
     top: 0;
     bottom: 0;
     right: 0;
-    width: 30em;
+    width: 40%;
     transform: translateX(100%);
     transition: .3s ease-out;
   }
@@ -77,6 +77,33 @@
     padding: 1em;
   }
   
+
+.panel_button_div{
+    min-height: 40px;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font: 80px;
+    /* display: inline-flex; */
+    background-color: #4CAF50;
+    color: black;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.panel_button_div:hover{
+    transform: scale(1.1);
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+}
+
+
+.panel_button{
+    float: center;
+    display: flex;
+    background-color: transparent;
+    width: 100%;
+}
+
   /* simulate panel state control --
   this can also be triggered by a 
   class name added to the body tag. 
