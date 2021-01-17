@@ -4,6 +4,12 @@ aws_credentials.py
 # cridentials for mail
 config_mail.py
 
+
+# secret key
+secret_map.py
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

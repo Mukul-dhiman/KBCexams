@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import aws_db as api
 import mailing as mail
+import secret_map 
 
 
 app = Flask(__name__)
@@ -212,8 +213,8 @@ def get_ticket_history(UserID,contestID):
 
 
 
-@app.route('/contest_env/<contestID>/<ticketID>')
-def contest_env(contestID,ticketID):
+@app.route('/ticket/<ticketID>')
+def contest_env(ticketID):
 
     if 'UserData' not in session:
         return redirect("/startup")
@@ -223,9 +224,17 @@ def contest_env(contestID,ticketID):
     if session['UserData']['UserID'] != ticket_info[1]:
         return redirect("/")
 
-    return render_template('home_pages/main-content/contest_pages/contest_env.html',ticket_info=ticket_info)
+    ticket_key = secret_map.map(ticketID)
+
+    return render_template('home_pages/main-content/contest_pages/contest_env.html',ticket_key=ticket_key,ticket_info=ticket_info)
 
 
+@app.route('/<secret_key>')
+def ticket_secret_key(secret_key):
+    
+    ticketID = secret_map.get(secret_key)
+     
+    return render_template('home_pages/main-content/contest_pages/contest_ques_page.html',ticketID=ticketID)
     
 
 

@@ -35,8 +35,7 @@ $(window).on('load',function(){
                 "' TicketState='"+
                 data.success[ticket][10]+
                 "'>"+
-                "<a href='/contest_env/"+
-                data.success[ticket][2]+"/"+data.success[ticket][0]+
+                "<a href='/ticket/"+data.success[ticket][0]+
                 "'>"+
                 " <div class='ticket_div' id='"+
                 data.success[ticket][0]+"'>" + 

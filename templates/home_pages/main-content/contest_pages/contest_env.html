@@ -10,7 +10,6 @@
 
 
 {% block main_content %}
-<meta id="user_ticket_info" UserID="{{ session['UserData']['UserID'] }}" ticket_info="{{ ticket_info }}">
 <br>
 <div class="ticket_info">
     {{ ticket_info }}
@@ -19,7 +18,7 @@
 
     <button class="ticket_state_button">
         {% if ticket_info[10] == 0 %}
-            Play Now
+            <a href="/{{ ticket_key }}">Use Ticket</a>
         {% elif ticket_info[10] == 1 %}
             Ticket Already Used
         {% else %}
