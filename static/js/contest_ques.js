@@ -30,7 +30,7 @@ function timer() {
         if(new Date - start - timeLimit < 5){
             time_remain = (timeLimit-(new Date - start))/1000;
             time_remain.toPrecision(1);
-            $('.Timer').text(time_remain + " Seconds");
+            $('#Timer').text(time_remain + " Seconds");
         }
     }, 1000);
     
@@ -51,7 +51,6 @@ function use_ticket(d){
     start_h = start_time.split(':')[0];
     start_m = start_time.split(':')[1];
     start_s = start_time.split(':')[2];
-    console.log(d,start_time);
     $.ajax({
         type: "POST",
         cache: false,
@@ -74,21 +73,16 @@ $(document).on('click', '#start_contest', function () {
     var d = new Date
     use_ticket(d);
     question_number(0);
-
-    console.log(question_array,d);
 });
 
 
 function question_number(number){
-    console.log(number);
     var previous = (number - 1)%10;
     var next = (number + 1)%10;
     if(number==0){
         previous = 9;
         next = 1; 
     }
-    console.log(previous,next);
-    console.log(question_array[number]);
     $("#question_statement").text(question_array[number][1]);
     $("#option1").text(question_array[number][2]);
     $("#option2").text(question_array[number][3]);
@@ -100,13 +94,24 @@ function question_number(number){
 
 $(document).on("click",'#navigation_button_previous',function(){
     var previous =  $(navigation_button_previous).attr("previous");
-    console.log(previous,"previous button");
     question_number(Number(previous));
 })
 
 
 $(document).on("click",'#navigation_button_next',function(){
     var next =  $(navigation_button_next).attr("next");
-    console.log(next,"next button");
     question_number(Number(next));
-})
+});
+
+
+$(document).on('click', '#clicker', function () {
+    if($(".panel_slider").prop("checked")) {
+        //I am checked
+        console.log("s");
+        $(".panel_slider").prop('checked', false);
+    }else{
+        //I'm not checked
+        console.log("h");
+        $(".panel_slider").prop('checked', true);
+    }
+});

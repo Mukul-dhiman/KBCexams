@@ -116,8 +116,9 @@
   
   
 
-  [type="checkbox"] {
-    font-size: 1em;
+  .clicker{
+      width: 100%;
+      min-height: 30px;
   }
   
 
@@ -151,5 +152,36 @@
   }
   
   .round {
-    border-radius: 50%;
+    border-radius: 100%;
+  }
+
+
+  .Timer{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    margin: auto;
+    max-width: 300px;
+    min-height: 80px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
+  .panel_slider{
+      display: none;
+  }
+
+
+  .pannel_collapse{
+      width: 100%;
+      min-height: 30px;
+  }
+
+  .pannel_open{
+    border-radius: 100%;
+  padding: 8px 16px;
+    position: fixed;
+    right: 0.75rem;
+  bottom: 0.75rem;
   }

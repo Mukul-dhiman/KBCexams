@@ -10,9 +10,11 @@
 
 
 {% block main_content %}
-<div class="Timer"></div>
-<input id="clicker" type="checkbox" />
-<label for="clicker">Click me! I'm an arbitrary trigger</label>
+<div class="Timer">Time Left:<span id="Timer"></span></div>
+<input class="panel_slider" id="clicker" type="checkbox" />
+<div class="pannel_open">
+    <button class="clicker" id="clicker" type="button">&#8249;</button>
+</div>
 <meta id='ticketID' ticketID="{{ ticketID }}">
 <br>
 <div class="question_floor" id="question_floor">
@@ -58,13 +60,17 @@
     <div class="panel">
         <h3>Yay! Panels!</h3>
         {% for i in range(10) %}
-        <button class="panel_button" type="button" onclick='question_number("{{ i }}")'>
+        <button class="panel_button" id='navigation_button_{{i}}' type="button" onclick='question_number("{{ i }}")'>
             <div class="panel_button_div">
                 Question {{ i + 1 }}
             </div>
         </button>
         <br>
         {% endfor %}
+        <div class="pannel_collapse">
+            <button class="clicker" id="clicker" type="button"></button>
+        </div>
     </div>
+    
 </div>
 {% endblock %}
