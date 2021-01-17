@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import aws_db as api
 import mailing as mail
-import secret_map 
+import secret_map
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -234,8 +235,47 @@ def ticket_secret_key(secret_key):
     
     ticketID = secret_map.get(secret_key)
      
+    ticketstate = api.ticket_state(ticketID)
+
+
+    if(ticketstate!=0):
+        return redirect('/ticket/'+ticketID)
+
+
     return render_template('home_pages/main-content/contest_pages/contest_ques_page.html',ticketID=ticketID)
     
+
+@app.route('/get_random_questions/<ticketid>',methods=['POST'])
+def get_random_questions(ticketid):
+
+    questions = api.get_random_questions()
+
+    if questions == "error":
+        return jsonify({'error' : 'error in getting questions!'})   
+    return jsonify({'success' : questions})
+
+
+@app.route('/use_ticket/<ticketid>',methods=['POST'])
+def use_ticket(ticketid):
+
+    data = request.get_data().decode("utf-8");
+    startdate = data.split('&')[0].split('=')[1]
+    starth = data.split('&')[1].split('=')[1]
+    startm = data.split('&')[2].split('=')[1]
+    starts = data.split('&')[3].split('=')[1]
+    starttime = startdate + " " + starth + ":" + startm + ":" + starts 
+
+    starttime = datetime.strptime(starttime, '%Y-%m-%d %H:%M:%S')
+
+
+    done = api.use_ticket(starttime, ticketid)
+
+
+    if done == "error":
+        return jsonify({'error' : 'error in using ticket!'})   
+    return jsonify({'success' : done})
+
+
 
 
 # for local 

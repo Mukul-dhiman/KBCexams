@@ -229,8 +229,8 @@ def ticket_state(ticketID):
         with conn.cursor() as cur:
             sql = "select TicketState from UserContestParticipationDetails where TicketID = %s"
             cur.execute(sql,ticketID)
-            data = cur.fetchall()
-            return data
+            data = cur.fetchone()
+            return data[0]
 
     except Exception as e:
         print("error in getting ticket State, error:",e)
@@ -249,4 +249,35 @@ def ticket_info(ticketID):
 
     except Exception as e:
         print("error in getting ticket info, error:",e)
+        return "error"
+
+
+
+def get_random_questions():
+    reconnect()
+    try:
+        with conn.cursor() as cur:
+            sql = "select * from QuestionBank order by rand() limit 10;"
+            cur.execute(sql)
+            data = cur.fetchall()
+            return data
+
+    except Exception as e:
+        print("error in getting questions, error:",e)
+        return "error"
+
+
+def use_ticket(startdate, ticketid):
+    reconnect()
+    try:
+        with conn.cursor() as cur:
+            sql = "update UserContestParticipationDetails set TestStartDate = %s where TicketID=%s"
+            cur.execute(sql,(startdate, ticketid))
+            conn.commit()
+
+
+            return "done"
+
+    except Exception as e:
+        print("error in useing ticket, error: ",str(e))
         return "error"

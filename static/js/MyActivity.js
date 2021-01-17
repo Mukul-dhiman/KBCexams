@@ -10,32 +10,7 @@ $(window).on('load',function(){
         success: function (data) {
             var ticket;
             for( ticket = 0; ticket < data.success.length; ticket++){
-                $("#all_tickets").append("<meta id='meta_data_"+
-                data.success[ticket][0]+
-                "' TicketID='"+
-                data.success[ticket][0]+
-                "' UserID='"+
-                data.success[ticket][1]+
-                "' ContestID='"+
-                data.success[ticket][2]+
-                "' ObtainedScore='"+
-                data.success[ticket][3]+
-                "' MaximumScore='"+
-                data.success[ticket][4]+
-                "' RankAchieved='"+
-                data.success[ticket][5]+
-                "' AwardReceived='"+
-                data.success[ticket][6]+
-                "' CreatedDate='"+
-                data.success[ticket][7]+
-                "' TestSubmitDate='"+
-                data.success[ticket][8]+
-                "' ModifiedDate='"+
-                data.success[ticket][9]+
-                "' TicketState='"+
-                data.success[ticket][10]+
-                "'>"+
-                "<a href='/ticket/"+data.success[ticket][0]+
+                $("#all_tickets").append("<a href='/ticket/"+data.success[ticket][0]+
                 "'>"+
                 " <div class='ticket_div' id='"+
                 data.success[ticket][0]+"'>" + 

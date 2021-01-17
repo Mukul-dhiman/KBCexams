@@ -10,7 +10,22 @@
 
 
 {% block main_content %}
+<div class="Timer"></div>
+<meta id='ticketID' ticketID="{{ ticketID }}">
 <br>
-hello
-{{ ticketID }}
+<div class="question_floor" id="question_floor">
+    hello
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <p>once you start the contest. don't go back or close the contest</p>
+        <a id="go_back" href="/ticket/{{ticketID}}">Go Back</a>
+        <button type="button" id="start_contest" class="confirm_button">Start</button>
+    </div>
+
+</div>
 {% endblock %}
