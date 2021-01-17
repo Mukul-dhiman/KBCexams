@@ -42,6 +42,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 10px;
     margin: auto;
     max-width: 700px;
     min-height: 300px;
@@ -53,3 +54,75 @@
     background-color: rgba(0, 0, 0, 0.7); /* 0.7 = 70% opacity */
 }
   
+
+/* panel layout mechanics */
+.panel-wrap {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 30em;
+    transform: translateX(100%);
+    transition: .3s ease-out;
+  }
+  .panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #333;
+    color: #eee;
+    overflow: auto;
+    padding: 1em;
+  }
+  
+  /* simulate panel state control --
+  this can also be triggered by a 
+  class name added to the body tag. 
+  Just using a checkbox sibling here
+  for simplicity
+  */ 
+  [type="checkbox"]:checked ~ .panel-wrap {
+    transform: translateX(0%);
+  }
+  
+  
+
+  [type="checkbox"] {
+    font-size: 1em;
+  }
+  
+
+.navigation-next-previous{
+    text-align: center;
+    float: center;
+}
+
+  
+ .navigation_button {
+      width: 50%;
+      float: left;
+    text-decoration: none;
+    display: inline-flex;
+    padding: 8px 16px;
+  }
+  
+  .navigation_button:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .previous {
+    background-color: #f1f1f1;
+    color: black;
+  }
+  
+  .next {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .round {
+    border-radius: 50%;
+  }

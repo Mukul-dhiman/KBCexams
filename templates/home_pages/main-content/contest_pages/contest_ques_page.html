@@ -11,10 +11,34 @@
 
 {% block main_content %}
 <div class="Timer"></div>
+<input id="clicker" type="checkbox" />
+<label for="clicker">Click me! I'm an arbitrary trigger</label>
 <meta id='ticketID' ticketID="{{ ticketID }}">
 <br>
 <div class="question_floor" id="question_floor">
-    hello
+    <div class="question_box">
+        <div id="question_statement">
+
+        </div>
+        <div class="question_options">
+            <div class="option1" id="option1"> 
+
+            </div>
+            <div class="option2" id="option2"> 
+
+            </div>
+            <div class="option3" id="option3"> 
+
+            </div>
+            <div class="option4" id="option4"> 
+
+            </div>
+        </div>
+    </div>
+    <div class="navigation-next-previous">
+        <button type="button" id="navigation_button_previous" previous="9" class="navigation_button previous">&laquo; Previous</button>
+        <button type="button" id="navigation_button_next" next="1" class="navigation_button next">Next &raquo;</button>
+    </div>
 </div>
 
 <!-- The Modal -->
@@ -27,5 +51,16 @@
         <button type="button" id="start_contest" class="confirm_button">Start</button>
     </div>
 
+</div>
+
+<div class="panel-wrap">
+    <div class="panel">
+        <h3>Yay! Panels!</h3>
+        {% for i in range(10) %}
+        <div class="panel_button">
+            <button type="button" onclick='question_number("{{ i }}")'>Question {{ i + 1 }}</button>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
