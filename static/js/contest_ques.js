@@ -1,6 +1,12 @@
 let question_array = []
 
 $(window).on('load',function(){
+    document.getElementById("myModal").style.display = "block";
+    $('#myModal').addClass('is-blurred');
+})
+
+
+function get_question(){
     var ticketID = $('#ticketID').attr("ticketID");
     var qurl = "/get_random_questions/"+ticketID;
     $('#myModal').addClass('is-blurred');
@@ -10,18 +16,21 @@ $(window).on('load',function(){
         url: qurl,
         dataType: "json",
         success: function (data) {
-            document.getElementById("myModal").style.display = "block";
             question_array=data.success;
+            var d = new Date
+            use_ticket(d);
         },
         error: function (jqXHR) {
+            // noticeify user that we have error in getting question
+
             console.log("error");
         }
     });
-})
+}
 
 var myVar;
 
-var timeLimit = 10*60*1000;
+var timeLimit = 5*60*1000;
 var time_remain;
 
 function timer() {
@@ -45,7 +54,6 @@ function timeoutfunc() {
 function use_ticket(d){
     var ticketID = $('#ticketID').attr("ticketID");
     var qurl = "/use_ticket/"+ticketID;
-    $('#myModal').addClass('is-blurred');
     start_date = d.toISOString().split('T')[0];
     start_time = d.toTimeString().split(' ')[0];
     start_h = start_time.split(':')[0];
@@ -58,21 +66,22 @@ function use_ticket(d){
         data: {start_date, start_h, start_m, start_s},
         dataType: 'text',
         success: function (data) {
+            question_number(0);
+            document.getElementById("myModal").style.display = "none";
+            $('#myModal').removeClass('is-blurred');
+            timer();
             console.log(data);
         },
         error: function (jqXHR) {
+            // noticity user to try later and your ticket is safe
+
             console.log("error in startdate");
         }
     });
 }
 
 $(document).on('click', '#start_contest', function () {
-    document.getElementById("myModal").style.display = "none";
-    $('#myModal').removeClass('is-blurred');
-    timer();
-    var d = new Date
-    use_ticket(d);
-    question_number(0);
+    get_question();
 });
 
 
@@ -107,11 +116,9 @@ $(document).on("click",'#navigation_button_next',function(){
 $(document).on('click', '#clicker', function () {
     if($(".panel_slider").prop("checked")) {
         //I am checked
-        console.log("s");
         $(".panel_slider").prop('checked', false);
     }else{
         //I'm not checked
-        console.log("h");
         $(".panel_slider").prop('checked', true);
     }
 });
