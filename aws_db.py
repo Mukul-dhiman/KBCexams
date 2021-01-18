@@ -101,7 +101,7 @@ def contestList():
             return data
 
     except Exception as e:
-        print("error in Listing Contest error: ",e)
+        print("error in Listing Contest error: ",str(e))
         return
 
 
@@ -257,7 +257,7 @@ def get_random_questions():
     reconnect()
     try:
         with conn.cursor() as cur:
-            sql = "select * from QuestionBank order by rand() limit 10;"
+            sql = "select QuestionID, QuestionDescription, Option1, Option2, Option3, Option4 from QuestionBank order by rand() limit 10;"
             cur.execute(sql)
             data = cur.fetchall()
             return data

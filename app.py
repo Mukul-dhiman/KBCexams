@@ -250,6 +250,8 @@ def get_random_questions(ticketid):
 
     questions = api.get_random_questions()
 
+    print(questions)
+
     if questions == "error":
         return jsonify({'error' : 'error in getting questions!'})   
     return jsonify({'success' : questions})

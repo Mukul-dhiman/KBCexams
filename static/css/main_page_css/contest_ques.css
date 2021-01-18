@@ -185,3 +185,30 @@
     right: 0.75rem;
   bottom: 0.75rem;
   }
+
+
+  .option{
+    width: 90%;
+    margin: 5px;
+    font-size: 30px;
+  }
+
+  .option_button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+  }
+
+
+.hide_checkbox{
+  display: none;
+}
+
+
+#QuestionNumber{
+  width: 20%;
+}
+
+#QuestionStatement{
+  width: 80%;
+}
