@@ -27,6 +27,7 @@
 
             </span>
         </div>
+        <br><br>
         <div class="question_options">
             <input class="hide_checkbox" id="option1_clickbox" type="checkbox" />
             <button class="option_button" id="option1_button">
@@ -65,6 +66,18 @@
         <button type="button" id="navigation_button_next" next="1" class="navigation_button next">Next &raquo;</button>
     </div>
 </div>
+<br>
+<div class="sumbit_floor" >
+    <span id="checkbox_msg"></span>
+    <span>
+        <input type="checkbox" id="Finish_checkbox" required="">
+        Mark this before FINISH 
+        <button type="button" value="FINISH" id="finish_contest">
+            FINISH
+        </button>
+    </span>
+    
+</div>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -83,8 +96,8 @@
         <h3>Yay! Panels!</h3>
         {% for i in range(10) %}
         <button class="panel_button" id='navigation_button_{{i}}' type="button" onclick='question_number("{{ i }}")'>
-            <div class="panel_button_div">
-                Question {{ i + 1 }}
+            <div class="panel_button_div" id='navigation_main_button_{{i}}'>
+                {{ i + 1 }}) <span id="respone_side_panel_{{i}}">Unattempted</span>
             </div>
         </button>
         <br>
@@ -93,6 +106,6 @@
             <button class="clicker" id="clicker" type="button"></button>
         </div>
     </div>
-
 </div>
+
 {% endblock %}

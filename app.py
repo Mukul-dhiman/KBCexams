@@ -250,7 +250,6 @@ def get_random_questions(ticketid):
 
     questions = api.get_random_questions()
 
-    print(questions)
 
     if questions == "error":
         return jsonify({'error' : 'error in getting questions!'})   
@@ -271,6 +270,36 @@ def use_ticket(ticketid):
 
 
     done = api.use_ticket(starttime, ticketid)
+
+
+    if done == "error":
+        return jsonify({'error' : 'error in using ticket!'})   
+    return jsonify({'success' : done})
+
+
+
+@app.route('/finish_ticket/<ticketid>',methods=['POST'])
+def finish_ticket(ticketid):
+
+    data = request.get_data().decode("utf-8");
+
+    dic,q_response_dic={},{}
+
+    for key, value in request.form.items():
+
+        if key not in ['start_date','start_h','start_m','start_s']:
+            q_response_dic[key.split("[")[1].split("]")[0]]=value
+        else:
+            dic[key]=value
+
+
+    starttime = dic['start_date'] + " " + dic['start_h'] + ":" + dic['start_m'] + ":" + dic['start_s'] 
+
+
+
+    starttime = datetime.strptime(starttime, '%Y-%m-%d %H:%M:%S')
+
+    done = api.finish_ticket(starttime, ticketid, q_response_dic)
 
 
     if done == "error":

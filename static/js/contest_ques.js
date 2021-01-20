@@ -1,5 +1,8 @@
 let question_array = []
 let question_response = {}
+let question_order = {}
+var finished = 0;
+
 
 $(window).on('load',function(){
     document.getElementById("myModal").style.display = "block";
@@ -9,6 +12,7 @@ $(window).on('load',function(){
 
 function make_response_array(){
     for(var i=0;i<question_array.length;i++){
+        question_order[question_array[i][0]]=i;
         question_response[question_array[i][0]]=-1;
     }
 }
@@ -26,7 +30,7 @@ function get_question(){
         success: function (data) {
             question_array=data.success;
             make_response_array();
-            var d = new Date
+            var d = new Date;
             use_ticket(d);
         },
         error: function (jqXHR) {
@@ -56,7 +60,7 @@ function timer() {
 }
 
 function timeoutfunc() {
-
+    finish_contest(question_response);
     console.log(question_response);
     alert("Hello!");
 }
@@ -104,7 +108,7 @@ function question_number(number){
         next = 1; 
     }
 
-    $('#QuestionNumber').text(number+Number(1));
+    $('#QuestionNumber').text(Number(number)+Number(1));
     $('#question-id').attr('questionId',question_array[number][0]);
     $("#question_statement").text(question_array[number][1]);
     $("#option1").text(question_array[number][2]);
@@ -153,12 +157,17 @@ $(document).on('click', '#clicker', function () {
     if($("#option1_clickbox").prop("checked")) {
         //I am checked
         question_response[questionId] = -1;
+        $('#navigation_main_button_'+question_order[questionId]).css('background-color','yellow');
+        $('#respone_side_panel_'+question_order[questionId]).text('Unattempted');
+
         $("#option1_clickbox").prop('checked', false);
         $('#option1_button').css('border','initial');
         $('#option1_button').css('color','black');
     }else{
         //I'm not checked
         question_response[questionId] = 1;
+        $('#navigation_main_button_'+question_order[questionId]).css('background-color','green');
+        $('#respone_side_panel_'+question_order[questionId]).text('A');
         $("#option1_clickbox").prop('checked', true);
         $('#option1_button').css('border','3px solid limegreen');
         $('#option1_button').css('color','limegreen');
@@ -170,12 +179,16 @@ $(document).on('click', '#option2_button', function () {
     if($("#option2_clickbox").prop("checked")) {
         //I am checked
         question_response[questionId] = -1;
+        $('#navigation_main_button_'+question_order[questionId]).css('background-color','yellow');
+        $('#respone_side_panel_'+question_order[questionId]).text('Unattempted');
         $("#option2_clickbox").prop('checked', false);
         $('#option2_button').css('border','initial');
         $('#option2_button').css('color','black');
     }else{
         //I'm not checked
         question_response[questionId] = 2;
+        $('#navigation_main_button_'+question_order[questionId]).css('background-color','green');
+        $('#respone_side_panel_'+question_order[questionId]).text('B');
         $("#option2_clickbox").prop('checked', true);
         $('#option2_button').css('border','3px solid limegreen');
         $('#option2_button').css('color','limegreen');
@@ -187,12 +200,16 @@ $(document).on('click', '#option3_button', function () {
     if($("#option3_clickbox").prop("checked")) {
         //I am checked
         question_response[questionId] = -1;
+        $('#navigation_main_button_'+question_order[questionId]).css('background-color','yellow');
+        $('#respone_side_panel_'+question_order[questionId]).text('Unattempted');
         $("#option3_clickbox").prop('checked', false);
         $('#option3_button').css('border','initial');
         $('#option3_button').css('color','black');
     }else{
         //I'm not checked
         question_response[questionId] = 3;
+        $('#navigation_main_button_'+question_order[questionId]).css('background-color','green');
+        $('#respone_side_panel_'+question_order[questionId]).text('C');
         $("#option3_clickbox").prop('checked', true);
         $('#option3_button').css('border','3px solid limegreen');
         $('#option3_button').css('color','limegreen');
@@ -204,12 +221,16 @@ $(document).on('click', '#option4_button', function () {
     if($("#option4_clickbox").prop("checked")) {
         //I am checked
         question_response[questionId] = -1;
+        $('#navigation_main_button_'+question_order[questionId]).css('background-color','yellow');
+        $('#respone_side_panel_'+question_order[questionId]).text('Unattempted');
         $("#option4_clickbox").prop('checked', false);
         $('#option4_button').css('border','initial');
         $('#option4_button').css('color','black');
     }else{
         //I'm not checked
         question_response[questionId] = 4;
+        $('#navigation_main_button_'+question_order[questionId]).css('background-color','green');
+        $('#respone_side_panel_'+question_order[questionId]).text('D');
         $("#option4_clickbox").prop('checked', true);
         $('#option4_button').css('border','3px solid limegreen');
         $('#option4_button').css('color','limegreen');
@@ -226,4 +247,48 @@ function clearotherResponse(num){
             $('#option'+i+'_button').css('color','black');            
         }
     }
+}
+
+
+$(document).on('click', '#finish_contest', function () {
+    if($("#Finish_checkbox").prop("checked")){
+        finish_contest(question_response);
+    }
+    else{
+        $('#checkbox_msg').text("Check the Checkbox To Finish Contest");
+    }
+});
+
+
+function finish_contest(q_response){
+    if(finished==0){
+        finished=1;
+    }
+    else{
+        return;
+    }
+    var ticketID = $('#ticketID').attr("ticketID");
+    var qurl = "/finish_ticket/"+ticketID;
+    var d = new Date;
+    start_date = d.toISOString().split('T')[0];
+    start_time = d.toTimeString().split(' ')[0];
+    start_h = start_time.split(':')[0];
+    start_m = start_time.split(':')[1];
+    start_s = start_time.split(':')[2];
+    $.ajax({
+        type: "POST",
+        cache: false,
+        url: qurl,
+        data: {start_date, start_h, start_m, start_s, q_response},
+        success: function (data) {
+            // document.getElementById("myModal").style.display = "none";
+            // $('#myModal').removeClass('is-blurred');
+            console.log(data);
+        },
+        error: function (jqXHR) {
+            // noticity user to try later and your ticket is safe
+
+            console.log("error in finish contest");
+        }
+    });
 }

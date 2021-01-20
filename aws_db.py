@@ -281,3 +281,57 @@ def use_ticket(startdate, ticketid):
     except Exception as e:
         print("error in useing ticket, error: ",str(e))
         return "error"
+
+
+
+def finish_ticket(starttime, ticketid, q_response_dic):
+    reconnect()
+    total = len(q_response_dic)
+    marks_obtain = 0
+
+    for key,value in q_response_dic.items():
+        check = iscorrect(key,value)
+        if(check=="error"):
+            return "error"
+        elif(check==1):
+            marks_obtain+=1
+
+    state = ticket_state(ticketid)
+
+    if(state=="error"):
+        return "error"
+    elif(state==0):
+        state=1
+    
+
+    try:
+        with conn.cursor() as cur:
+            sql = "update UserContestParticipationDetails set ObtainedScore = %s, MaximumScore =%s, TestSubmitDate = %s,TicketState = %s  where TicketID=%s"
+            cur.execute(sql,(marks_obtain, total, starttime, state, ticketid))
+            conn.commit()
+
+
+            return "done"
+
+    except Exception as e:
+        print("error in finish ticket, error: ",str(e))
+        return "error"
+
+
+
+
+def iscorrect(questionID, response):
+    reconnect()
+    try:
+        with conn.cursor() as cur:
+            sql = "select CorrectOption from QuestionBank where QuestionID=%s"
+            cur.execute(sql,questionID)
+            correct_option = cur.fetchone()
+            if(correct_option[0] == response):
+                return 1
+            else:
+                return 0
+
+    except Exception as e:
+        print("error in checking question correctness, error: ",str(e))
+        return "error"

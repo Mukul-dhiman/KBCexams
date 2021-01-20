@@ -85,7 +85,7 @@
     padding: 10px;
     font: 80px;
     /* display: inline-flex; */
-    background-color: #4CAF50;
+    background-color:yellow; /* #4CAF50; */
     color: black;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -196,7 +196,7 @@
   .option_button{
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 80%;
+    width: 100%;
   }
 
 
@@ -211,4 +211,23 @@
 
 #QuestionStatement{
   width: 80%;
+}
+
+
+
+
+
+.sumbit_floor{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  margin: auto;
+  max-width: 700px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+#Finish_checkbox{
+  
 }
