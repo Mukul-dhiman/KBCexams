@@ -1,5 +1,31 @@
+#thankYou{
+    color: black;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0); /* Black w/ opacity */
+}
+
+
+#thankyou_main{
+    text-align: center;
+    min-height: 300px;
+    background-color: #76b852;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 60%;
+}
+
+
 #container{
-  text-align: center;
+  /* text-align: center; */
 }
 
 #smiley{
@@ -15,13 +41,14 @@
 }
 
 #message{
+    margin-top: 10%;
   position: absolute;
   height:200px;
   width:700px;
   top: 80px;
   align-content:center;
   text-align: center;
-  font-size: 132px;
+  font-size: 32px;
   opacity: 0.7;
 }
 
@@ -59,7 +86,7 @@
   border-radius: 7px;
   position: relative;
   left: 30px;
-  height: 50px;
+  height: 30px;
   width: 16%;
   background-color: white;
   opacity: 0.3;

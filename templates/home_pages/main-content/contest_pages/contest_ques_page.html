@@ -4,6 +4,8 @@
 {% block static_content %}
 <link href="{{ url_for('static', filename='css/main_page_css/contest_ques.css') }}" rel="stylesheet" type="text/css"
     media="all" />
+<link href="{{ url_for('static', filename='css/main_page_css/thank_you.css') }}" rel="stylesheet" type="text/css"
+    media="all" />
 <script rel="javascript" type="text/javascript" src="{{ url_for('static',filename='js/contest_ques.js') }}"></script>
 
 {% endblock %}
@@ -21,9 +23,9 @@
     <div class="question_box">
         <meta id="question-id" questionId="##">
         <div>
-            Question 
+            Question
             <span id="QuestionNumber"></span>:
-            <span  id="question_statement">
+            <span id="question_statement">
 
             </span>
         </div>
@@ -67,16 +69,16 @@
     </div>
 </div>
 <br>
-<div class="sumbit_floor" >
+<div class="sumbit_floor">
     <span id="checkbox_msg"></span>
     <span>
         <input type="checkbox" id="Finish_checkbox" required="">
-        Mark this before FINISH 
+        Mark this before FINISH
         <button type="button" value="FINISH" id="finish_contest">
             FINISH
         </button>
     </span>
-    
+
 </div>
 
 <!-- The Modal -->
@@ -90,6 +92,27 @@
     </div>
 
 </div>
+
+
+<div id="thankYou" >
+    <div id="thankyou_main">
+        <!-- <div id="smiley">
+            =)
+        </div> -->
+        <br><br>
+        <!-- <div id="message"> -->
+        <div> You For Playing!
+            <!-- <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div> -->
+            <a href="/ticket/{{ticketID}}">Back</a>
+        </div>
+    </div>
+</div>
+
 
 <div class="panel-wrap">
     <div class="panel">

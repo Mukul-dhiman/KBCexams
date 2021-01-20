@@ -12,8 +12,32 @@
 {% block main_content %}
 <br>
 <div class="ticket_info">
-    {{ ticket_info }}
-    
+    <tr>
+        <td>ObtainedScore</td>
+        <td>{{ ticket_info[3] }}/{{ ticket_info[4] }}</td> 
+    </tr>
+    <br>
+    {% if ticket_info[8] %}
+    <tr>
+        <td>timeTaken</td>
+        <td>{{ ticket_info[8] - ticket_info[11] }}</td> 
+    </tr>
+    {% endif %}
+    <br>
+    <tr>
+        <td>RankAchieved</td>
+        <td>{{ ticket_info[5] }}</td> 
+    </tr>
+    <br>
+    <tr>
+        <td>AwardReceived</td>
+        <td>{{ ticket_info[6] }}</td> 
+    </tr>
+    <br>
+    <tr>
+        <td>TestStartDate</td>
+        <td>{{ ticket_info[11] }}</td> 
+    </tr>
 
 
     <button class="ticket_state_button">

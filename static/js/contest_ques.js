@@ -281,7 +281,7 @@ function finish_contest(q_response){
         url: qurl,
         data: {start_date, start_h, start_m, start_s, q_response},
         success: function (data) {
-            // document.getElementById("myModal").style.display = "none";
+            document.getElementById("thankYou").style.display = "block";
             // $('#myModal').removeClass('is-blurred');
             console.log(data);
         },
