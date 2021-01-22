@@ -1,25 +1,8 @@
 import pymysql
 import aws_credentials as rds
-conn = pymysql.connect(
-    host = rds.host,
-    port = rds.port,
-    user = rds.user,
-    password = rds.password,
-    db = rds.databasename,
-)
 
-def reconnect():
-    # print("reconnecting...")
-    try:
-        conn = pymysql.connect(
-            host = rds.host,
-            port = rds.port,
-            user = rds.user,
-            password = rds.password,
-            db = rds.databasename,
-        )
-    except Exception as e:
-        print("error in reconnecting to database, error: ",str(e))
+
+
 
 import string
 import random
@@ -31,19 +14,32 @@ def ticket_generator(size, chars=string.ascii_letters + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
 def signup(email,password):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         UserID = id_generator(64)
         with conn.cursor() as cur:
-            sql = "insert into UserMaster (UserId, EmailAddress, PasswordHash) value (%s,%s,%s)"
-            cur.execute(sql,(UserID, email,password))
+            sql = "insert into UserMaster (UserId, Name, EmailAddress, PasswordHash) value (%s,%s,%s,%s)"
+            name=email.split("@")[0]
+            cur.execute(sql,(UserID, name, email,password))
             conn.commit()
 
     except Exception as e:
         print("error in sign up for email",email,"error: ",e)
 
 def login(email,password):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
             sql = "select UserId, Name, PasswordHash, WalletBalance, CreateDate from UserMaster where EmailAddress=%s"
@@ -62,7 +58,13 @@ def login(email,password):
 
 
 def UserExist(email):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
             sql = "select exists(select * from UserMaster where EmailAddress=%s)"
@@ -78,7 +80,13 @@ def UserExist(email):
 
 
 def change_password(email,password):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
             sql = "update UserMaster set PasswordHash = %s where EmailAddress=%s"
@@ -92,7 +100,13 @@ def change_password(email,password):
 
 
 def contestList():
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
             sql = "select * from ContestMaster where date(CompletionDate) > date(now());"
@@ -107,7 +121,13 @@ def contestList():
 
 
 def get_contest_details(contestID):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
             sql = "select * from ContestAwardDetails where ContestID = %s order by StartRank ASC;"
@@ -121,7 +141,13 @@ def get_contest_details(contestID):
 
 
 def get_contest_pay(contestID):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
             sql = "select TicketPrice from ContestMaster where ContestID = %s"
@@ -135,7 +161,13 @@ def get_contest_pay(contestID):
 
 
 def get_Current_Wallet_Balance(userid):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
             sql = "select WalletBalance from UserMaster where UserID = %s"
@@ -149,7 +181,13 @@ def get_Current_Wallet_Balance(userid):
 
 
 def get_ticket(contestID,UserID):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
 
@@ -186,7 +224,13 @@ def get_ticket(contestID,UserID):
 
 
 def get_Current_Wallet_Balance(userid):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
             sql = "select WalletBalance from UserMaster where UserID = %s"
@@ -199,7 +243,13 @@ def get_Current_Wallet_Balance(userid):
         return "error"
 
 def ticket_history(UserID,contestID):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
             if contestID == "all":
@@ -224,7 +274,13 @@ def ticket_history(UserID,contestID):
 
 
 def ticket_state(ticketID):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
             sql = "select TicketState from UserContestParticipationDetails where TicketID = %s"
@@ -237,9 +293,34 @@ def ticket_state(ticketID):
         return "error"
 
 
+def ticket_start_time(ticketID):
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
+    try:
+        with conn.cursor() as cur:
+            sql = "select TestStartDate from UserContestParticipationDetails where TicketID = %s"
+            cur.execute(sql,ticketID)
+            data = cur.fetchone()
+            return data[0]
+
+    except Exception as e:
+        print("error in getting ticket Start date, error:",e)
+        return "error"
+
 
 def ticket_info(ticketID):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
             sql = "select * from UserContestParticipationDetails where TicketID = %s"
@@ -254,7 +335,13 @@ def ticket_info(ticketID):
 
 
 def get_random_questions():
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
             sql = "select QuestionID, QuestionDescription, Option1, Option2, Option3, Option4 from QuestionBank order by rand() limit 10;"
@@ -268,7 +355,13 @@ def get_random_questions():
 
 
 def use_ticket(startdate, ticketid):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
             sql = "update UserContestParticipationDetails set TestStartDate = %s where TicketID=%s"
@@ -285,7 +378,13 @@ def use_ticket(startdate, ticketid):
 
 
 def finish_ticket(starttime, ticketid, q_response_dic):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     total = len(q_response_dic)
     marks_obtain = 0
 
@@ -321,7 +420,13 @@ def finish_ticket(starttime, ticketid, q_response_dic):
 
 
 def iscorrect(questionID, response):
-    reconnect()
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
     try:
         with conn.cursor() as cur:
             sql = "select CorrectOption from QuestionBank where QuestionID=%s"

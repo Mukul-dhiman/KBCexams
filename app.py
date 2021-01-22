@@ -241,8 +241,9 @@ def ticket_secret_key(secret_key):
     if(ticketstate!=0):
         return redirect('/ticket/'+ticketID)
 
+    ticketDate = api.ticket_start_time(ticketID)
 
-    return render_template('home_pages/main-content/contest_pages/contest_ques_page.html',ticketID=ticketID)
+    return render_template('home_pages/main-content/contest_pages/contest_ques_page.html',ticketDate=ticketDate,ticketID=ticketID)
     
 
 @app.route('/get_random_questions/<ticketid>',methods=['POST'])
