@@ -10,7 +10,6 @@ config_mail.py
 secret_map.py
 
 
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
