@@ -249,7 +249,7 @@ def ticket_secret_key(secret_key):
 @app.route('/get_random_questions/<ticketid>',methods=['POST'])
 def get_random_questions(ticketid):
 
-    questions = api.get_random_questions()
+    questions = api.get_random_questions(ticketid)
 
 
     if questions == "error":

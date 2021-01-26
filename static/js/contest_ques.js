@@ -88,7 +88,8 @@ function timer() {
         }
     }, 1000);
 
-    var diff = new Date - startdate;
+    var diff = new Date - start;
+    console.log(timeLimit-diff);
     setTimeout(timeoutfunc, timeLimit - diff); 
 
 }

@@ -334,7 +334,7 @@ def ticket_info(ticketID):
 
 
 
-def get_random_questions():
+def get_random_questions(ticketid):
     conn = pymysql.connect(
         host = rds.host,
         port = rds.port,
