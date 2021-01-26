@@ -1,5 +1,6 @@
 # cridentials
 aws_credentials.py
+SuperUserCredentials.py
 
 # cridentials for mail
 config_mail.py

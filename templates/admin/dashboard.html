@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+
+
+{%  block head %}
+
+<title> KBCexams | SuperUser </title> 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script rel="javascript" type="text/javascript" src="{{ url_for('static',filename='js/admin/admin_apis.js') }}"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+{% endblock %}
+
+
+{%  block body %}
+
+<div class="container-fluid">
+    <div class="row">
+        <aside class="col-2 px-0 fixed-top" id="left">
+
+            <div class="list-group w-100">
+                <a id="Contest" class="list-group-item active">Contest</a>
+                <a id="Questions" class="list-group-item">Questions</a>
+                <a id="Users" class="list-group-item">Users</a>
+                <a href="/SuperUser/logout" class="list-group-item">LOGOUT</a>
+            </div>
+
+        </aside>
+        <main class="col offset-2 h-100">
+            <div class="row bg-light">
+                <div class="col-12" style="text-align: center; font-size: 40px;">
+                    All contest
+                </div>
+            </div>
+            <div class="row bg-white">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="/superuser_admin/dashboard/contest" allowfullscreen></iframe>
+                  </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+{% endblock %}

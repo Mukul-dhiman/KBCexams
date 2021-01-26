@@ -3,6 +3,7 @@ import aws_db as api
 import mailing as mail
 import secret_map
 from datetime import datetime
+from SuperUserCredentials import SuperUserHash as super_map
 
 
 app = Flask(__name__)
@@ -14,6 +15,45 @@ app.secret_key = "basvbavaiyvbhcbbbcSBCbdibfbbcidbscbk"
 
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 TimeSecureMailToken = URLSafeTimedSerializer(app.secret_key)
+
+@app.route('/superuser_admin', methods=['POST','GET'])
+def superuser_admin():
+    if(request.method == 'POST'):
+        form_details = request.form
+        print(form_details)
+        if(super_map[form_details['SuperUsername']] != form_details['InputPassword']):
+            redirect('/superuser_admin', wrong="wrong")
+
+        result_dict = form_details['SuperUsername']
+        session['SuperUserData'] = result_dict
+        return redirect("/superuser_admin/dashboard")
+
+
+    if 'SuperUserData' in session:
+        return redirect("/superuser_admin/dashboard")
+    return render_template("admin/login.html")
+
+@app.route('/superuser_admin/dashboard')
+def superuser_admin_dashboard():
+    if 'SuperUserData' not in session:
+        return redirect("/superuser_admin")
+    return render_template("admin/dashboard.html")
+
+
+@app.route('/superuser_admin/dashboard/contest')
+def superuser_admin_dashboard_contest():
+    if 'SuperUserData' not in session:
+        return redirect("/superuser_admin")
+    return render_template("admin/dashboard_contest.html")
+
+
+    
+@app.route('/SuperUser/logout')
+def superuser_admin_logout():
+    if 'SuperUserData' in session:
+        session.pop('SuperUserData')
+    return redirect("/superuser_admin")
+
 
 
 
