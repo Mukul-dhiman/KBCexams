@@ -46,6 +46,19 @@ def superuser_admin_dashboard_contest():
         return redirect("/superuser_admin")
     return render_template("admin/dashboard_contest.html")
 
+@app.route('/superuser_admin/dashboard/Questions')
+def superuser_admin_dashboard_Questions():
+    if 'SuperUserData' not in session:
+        return redirect("/superuser_admin")
+    return render_template("admin/dashboard_Questions.html")
+
+
+@app.route('/superuser_admin/dashboard/Users')
+def superuser_admin_dashboard_Users():
+    if 'SuperUserData' not in session:
+        return redirect("/superuser_admin")
+    return render_template("admin/dashboard_Users.html")
+
 
     
 @app.route('/SuperUser/logout')
