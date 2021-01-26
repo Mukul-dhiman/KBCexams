@@ -180,6 +180,30 @@ def get_Current_Wallet_Balance(userid):
         return "error"
 
 
+def isspotsLeft(contestID):
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
+    try:
+        with conn.cursor() as cur:
+            sql = "select SpotsLeft from ContestMaster where contestID = %s"
+            cur.execute(sql,contestID)
+            data = cur.fetchone()
+            if(data[0]>0):
+                return True
+            return False
+
+    except Exception as e:
+        print("error in checking Spots lefts, error:",e)
+        return "error"
+
+
+
+
 def get_ticket(contestID,UserID):
     conn = pymysql.connect(
         host = rds.host,
@@ -214,6 +238,7 @@ def get_ticket(contestID,UserID):
             # if 2: means ticket is expired without use
             # if 3: means ticket is expired and used 
             conn.commit()
+
 
             return "complete"
 
@@ -334,7 +359,14 @@ def ticket_info(ticketID):
 
 
 
+question_map={}
+
+
 def get_random_questions(ticketid):
+    if ticketid in question_map:
+        return question_map[ticketid]
+
+
     conn = pymysql.connect(
         host = rds.host,
         port = rds.port,
@@ -347,12 +379,12 @@ def get_random_questions(ticketid):
             sql = "select QuestionID, QuestionDescription, Option1, Option2, Option3, Option4 from QuestionBank order by rand() limit 10;"
             cur.execute(sql)
             data = cur.fetchall()
+            question_map[ticketid]=data
             return data
 
     except Exception as e:
         print("error in getting questions, error:",e)
         return "error"
-
 
 def use_ticket(startdate, ticketid):
     conn = pymysql.connect(

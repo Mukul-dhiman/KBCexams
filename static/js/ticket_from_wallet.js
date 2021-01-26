@@ -25,8 +25,11 @@ $(document).on('click', '#confirm_ticket', function () {
         dataType: "json",
         success: function (data) {
             get_Current_Wallet_Balance(UserID, '#Current_Wallet_Balance');
-            console.log(data.success);
-            if(data.success=="complete"){
+            if(data.success=="false"){
+                document.getElementById("ticket_status").style.color="Red";
+                document.getElementById("ticket_status").innerText="No Spots Left!!!";
+            }
+            else if(data.success=="complete"){
                 document.getElementById("ticket_status").style.color="Green";
                 document.getElementById("ticket_status").innerText="You get the Ticket!!!";
             }

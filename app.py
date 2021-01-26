@@ -196,10 +196,17 @@ def get_Current_Wallet_Balance(userid):
 
 @app.route('/get_ticket/<contestID>/<UserID>',methods=['Post'])
 def get_ticket(contestID,UserID):
+
+    isspotsLeft = api.isspotsLeft(contestID)
+
+    if(isspotsLeft==False):
+        return jysonify({'success' : "false"})
+
+
     result = api.get_ticket(contestID,UserID)
 
     if result == "error":
-        return jsonify({'error' : 'Missing data!'})   
+        return jsonify({'error' : 'Missing data!'})  
     return jsonify({'success' : result})
 
 
