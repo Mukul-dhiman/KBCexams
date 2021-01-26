@@ -31,8 +31,11 @@ def signup():
             return render_template("pre_pages/signup.html",error="active")
 
         api.signup(form_details['email'],form_details['password'])
+        result_dict = api.login(form_details['email'],form_details['password'])
+        session['UserData'] = result_dict
+        return redirect("/")
 
-        return redirect("/login")
+
     if 'UserData' in session:
         return redirect("/")
     return render_template("pre_pages/signup.html")
