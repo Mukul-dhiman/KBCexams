@@ -32,6 +32,7 @@ $(document).on('click', '#confirm_ticket', function () {
             else if(data.success=="complete"){
                 document.getElementById("ticket_status").style.color="Green";
                 document.getElementById("ticket_status").innerText="You get the Ticket!!!";
+                location.href = "/ticket/"+data.ticketID
             }
             else{
                 document.getElementById("ticket_status").style.color="Red";

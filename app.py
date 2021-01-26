@@ -207,7 +207,7 @@ def get_ticket(contestID,UserID):
 
     if result == "error":
         return jsonify({'error' : 'Missing data!'})  
-    return jsonify({'success' : result})
+    return jsonify({'success' : "complete", 'ticketID': result})
 
 
 @app.route('/get_ticket_history/<UserID>/<contestID>',methods=['POST'])

@@ -89,14 +89,13 @@ function timer() {
     }, 1000);
 
     var diff = new Date - start;
-    console.log(timeLimit-diff);
     setTimeout(timeoutfunc, timeLimit - diff); 
 
 }
 
 function timeoutfunc() {
     finish_contest(question_response);
-    alert("Hello!");
+    alert("Contest Ended!");
 }
 
 
@@ -316,7 +315,6 @@ function finish_contest(q_response) {
         success: function (data) {
             document.getElementById("thankYou").style.display = "block";
             // $('#myModal').removeClass('is-blurred');
-            console.log(data);
         },
         error: function (jqXHR) {
             // noticity user to try later and your ticket is safe

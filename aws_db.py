@@ -240,7 +240,7 @@ def get_ticket(contestID,UserID):
             conn.commit()
 
 
-            return "complete"
+            return ticketid
 
     except Exception as e:
         print("error in getting ticket, error:",e)
