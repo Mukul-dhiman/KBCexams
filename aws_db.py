@@ -533,3 +533,41 @@ def get_all_contest():
     except Exception as e:
         print("error in getting all Contest, error: ",str(e))
         return "error"
+
+
+def add_contest_details(StartRank, EndRank, Prize,contestid):
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
+    try:
+        with conn.cursor() as cur:
+            sql = "insert into ContestAwardDetails (ContestID, StartRank, EndRank, AwardAmount) values ('"+contestid+"','"+StartRank+"','"+EndRank+"','"+Prize+"')"
+            cur.execute(sql)
+            conn.commit()
+
+    except Exception as e:
+        print("error in adding Contest details, error: ",str(e))
+        return "error"
+
+
+def delete_contest_details(StartRank, EndRank, contestid):
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
+    try:
+        with conn.cursor() as cur:
+            sql = "delete from ContestAwardDetails where StartRank ="+StartRank+" and EndRank = "+EndRank+" and ContestID = '"+contestid+"'"
+            cur.execute(sql)
+            conn.commit()
+
+    except Exception as e:
+        print("error in deleting Contest details, error: ",str(e))
+        return "error"

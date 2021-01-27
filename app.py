@@ -87,6 +87,40 @@ def superuser_admin_api_CreateContest():
     return jsonify({'success' : done})
 
 
+@app.route('/superuser_admin/api/Contest_details/<contestid>',methods=['POST'])
+def superuser_admin_api_Contest_details(contestid):
+
+    contest_details = api.get_contest_details(contestid)
+
+
+    if contest_details == "error":
+        return jsonify({'error' : 'error in getting contest details!'})  
+    return jsonify({'success' : contest_details})
+
+
+
+@app.route('/superuser_admin/api/change_contest_details/<contestid>',methods=['POST'])
+def superuser_admin_api_change_Contest_details(contestid):
+
+
+    data = {}
+    for key, value in request.form.items():
+        data[key] = value
+
+
+    if 'add' in data.keys():
+        api.add_contest_details(data['StartRank'],data['EndRank'],data['Prize'],contestid)
+    
+    elif 'delete' in data.keys():
+        api.delete_contest_details(data['StartRank'],data['EndRank'],contestid)
+
+
+    if contest_details == "error":
+        return jsonify({'error' : 'error in changing contest details!'})  
+    return jsonify({'success' : "done"})
+
+
+
 @app.route('/startup')
 def start_up():
     if 'UserData' in session:
