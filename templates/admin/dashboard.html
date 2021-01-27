@@ -1,16 +1,20 @@
 {% extends 'index.html' %}
 
 
-{%  block head %}
+{% block head %}
 
-<title> KBCexams | SuperUser </title> 
-<script rel="javascript" type="text/javascript" src="{{ url_for('static',filename='js/admin/admin_apis.js') }}"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<title> KBCexams | SuperUser </title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script rel="javascript" type="text/javascript"
+    src="{{ url_for('static',filename='js/admin/admin_apis.js') }}"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 {% endblock %}
 
 
-{%  block body %}
+{% block body %}
 
 <div class="container-fluid">
     <div class="row">
@@ -32,8 +36,9 @@
             </div>
             <div class="row bg-white">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe id="iframe" class="embed-responsive-item" src="/superuser_admin/dashboard/contest" allowfullscreen></iframe>
-                  </div>
+                    <iframe id="iframe" class="embed-responsive-item" src="/superuser_admin/dashboard/contest"
+                        allowfullscreen></iframe>
+                </div>
             </div>
         </main>
     </div>

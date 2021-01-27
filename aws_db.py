@@ -493,3 +493,43 @@ def CreateContest(ContestID, CompletionDate, TicketPrice, TotalSpots):
     except Exception as e:
         print("error in Creating Contest, error: ",str(e))
         return "error"
+
+
+def create_event(ContestID, CompletionDate):
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
+    try:
+        with conn.cursor() as cur:
+            event_name = "event_"+str(ContestID)
+            sql = "create event " + event_name +" ON SCHEDULE AT '" + CompletionDate +"' DO update UserContestParticipationDetails set TicketState = TicketState + 2 where ContestID = %s"
+            cur.execute(sql,ContestID)
+            conn.commit()
+
+    except Exception as e:
+        print("error in Creating Contest end event, error: ",str(e))
+        return "error"
+
+
+
+def get_all_contest():
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
+    try:
+        with conn.cursor() as cur:
+            sql = "select * from ContestMaster"
+            cur.execute(sql)
+            return cur.fetchall()
+
+    except Exception as e:
+        print("error in getting all Contest, error: ",str(e))
+        return "error"

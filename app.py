@@ -44,7 +44,10 @@ def superuser_admin_dashboard():
 def superuser_admin_dashboard_contest():
     if 'SuperUserData' not in session:
         return redirect("/superuser_admin")
-    return render_template("admin/dashboard_contest.html")
+
+    all_contest = api.get_all_contest()
+    
+    return render_template("admin/dashboard_contest.html",all_contest = all_contest)
 
 @app.route('/superuser_admin/dashboard/Questions')
 def superuser_admin_dashboard_Questions():
@@ -79,7 +82,8 @@ def superuser_admin_api_CreateContest():
 
 
     if done == "error":
-        return jsonify({'error' : 'error in creating contest!'})   
+        return jsonify({'error' : 'error in creating contest!'}) 
+    api.create_event(data["ContestID"], data["CompletionDate"])  
     return jsonify({'success' : done})
 
 
