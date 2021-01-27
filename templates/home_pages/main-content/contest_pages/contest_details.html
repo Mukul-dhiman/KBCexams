@@ -11,7 +11,7 @@
 {% block main_content %}
 <br>
 <div class="contest-details" style="text-align: center;">
-    
+    {% if contest_data %}
     <br>
     
 
@@ -38,14 +38,15 @@
         </tbody>
       </table>
     <br>
+    {% endif %}
     <div> 
-        <form method="get" action="/contest/{{ contest_data[0][0] }}/ticket">
+        <form method="get" action="/contest/{{ contestID }}/ticket">
             <button class="ticket_button">Get Ticket</button>
         </form>
     </div>
 
 </div>
-<meta id="session_user_id" UserID="{{ session['UserData']['UserID'] }}" contestID="{{ contest_data[0][0] }}">
+<meta id="session_user_id" UserID="{{ session['UserData']['UserID'] }}" contestID="{{ contestID }}">
 
 <br>
 <div class="MyActivity">

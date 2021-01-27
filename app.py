@@ -67,7 +67,20 @@ def superuser_admin_logout():
         session.pop('SuperUserData')
     return redirect("/superuser_admin")
 
+@app.route('/superuser_admin/api/CreateContest',methods=['POST'])
+def superuser_admin_api_CreateContest():
 
+    data = {}
+    for key, value in request.form.items():
+        data[key] = value
+
+
+    done = api.CreateContest(data["ContestID"], data["CompletionDate"], data["TicketPrice"], data["TotalSpots"])
+
+
+    if done == "error":
+        return jsonify({'error' : 'error in creating contest!'})   
+    return jsonify({'success' : done})
 
 
 @app.route('/startup')
@@ -218,8 +231,8 @@ def contest_details(contestID):
 
     contest_data = api.get_contest_details(contestID)
 
-    if contest_data:
-        return render_template('home_pages/main-content/contest_pages/contest_details.html',contest_data = contest_data)
+    if contest_data!="error":
+        return render_template('home_pages/main-content/contest_pages/contest_details.html',contestID=contestID,contest_data = contest_data)
 
     else:
         return "<h1>something wrong</h1>"

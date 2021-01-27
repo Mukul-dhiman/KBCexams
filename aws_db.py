@@ -6,6 +6,7 @@ import aws_credentials as rds
 
 import string
 import random
+import datetime
 
 def id_generator(size, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
@@ -137,7 +138,7 @@ def get_contest_details(contestID):
 
     except Exception as e:
         print("error in getting Contest data, error: ",e)
-        return
+        return "error"
 
 
 def get_contest_pay(contestID):
@@ -471,4 +472,24 @@ def iscorrect(questionID, response):
 
     except Exception as e:
         print("error in checking question correctness, error: ",str(e))
+        return "error"
+
+
+
+def CreateContest(ContestID, CompletionDate, TicketPrice, TotalSpots):
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
+    try:
+        with conn.cursor() as cur:
+            sql = "Insert into ContestMaster (ContestID, CompletionDate, TicketPrice, TotalSpots, SpotsLeft) value ('"+ContestID+"','"+CompletionDate+"',"+TicketPrice+","+TotalSpots+","+TotalSpots+")"
+            cur.execute(sql)
+            conn.commit()
+
+    except Exception as e:
+        print("error in Creating Contest, error: ",str(e))
         return "error"

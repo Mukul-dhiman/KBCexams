@@ -1,6 +1,69 @@
-{% extends 'index.html' %}
+{% extends 'admin/dashboard_iframe.html' %}
 
-{%  block body %}
 
-contests
+
+{% block body %}
+<a class="btn btn-secondary btn-lg btn-block" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+    aria-controls="collapseExample">
+    <p style="text-align: center;">Create New Contest</p>
+</a>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <section class="content">
+            <form id="CreateContestForm">
+                <div class="form-group">
+                    <label for="ContestID">ContestID</label>
+                    <input type="text" class="form-control" id="ContestID" name="ContestID"
+                        aria-describedby="emailHelp" placeholder="eg. Contestid-1">
+                </div>
+                <div class="form-group">
+                    <label for="CompletionDate">Completion Date</label>
+                    <input type="date" class="form-control" id="CompletionDate" name="CompletionDate"
+                        aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                    <label for="TicketPrice">Ticket Price</label>
+                    <input type="text" class="form-control" id="TicketPrice" name="TicketPrice"
+                        aria-describedby="emailHelp" placeholder="eg. 100">
+                </div>
+                <div class="form-group">
+                    <label for="TotalSpots">Total Spots</label>
+                    <input type="text" class="form-control" id="TotalSpots" name="TotalSpots" placeholder="eg. 500">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </section>
+    </div>
+</div>
+<hr style="height:2px;color:gray;background-color:gray">
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+        </tr>
+    </tbody>
+</table>
 {% endblock %}
