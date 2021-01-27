@@ -37,3 +37,9 @@ $(document).on('submit', '#CreateContestForm', function () {
         }
     });
 });
+
+$(document).on('click', '#accordion1', function () {
+    var contestid = $(this).attr('contestid');
+    $("#edit_"+contestid).css("display","block");
+    console.log(contestid)
+});
